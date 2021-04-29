@@ -5,9 +5,8 @@ let a = parseInt(readlineSync.question("Введите начальное цел
 let b = parseInt(readlineSync.question("Введите конечное целое число: "));
 let x = parseInt(readlineSync.question("Введите делитель: "));
 
-while (a <= b) {
-    if (a % x === 0) {
-    console.log(a);
+for (i = a; i <= b; ++i) {
+    if (i % x === 0) {
+    console.log(i);
     }
-    a += 1;
 }

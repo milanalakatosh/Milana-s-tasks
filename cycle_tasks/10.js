@@ -4,7 +4,7 @@ const readlineSync = require ("readline-sync");
 let sum = 0;
 let x = 1;
 
-while (x > 0) {
+while (x !== 0) {
     x = parseInt(readlineSync.question("Введите числo: "));
     sum += x;
 }
