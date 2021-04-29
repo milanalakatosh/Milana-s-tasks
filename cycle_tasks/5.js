@@ -16,20 +16,16 @@ let breakDay = 1;
 let totalDistance = x;
 
 while (true) {
-    if (countDay >= n) {
-        break;
-    } else {
-        distanceNewDay = (y/100) * distancePreviousDay + distancePreviousDay;
-        totalDistance += distanceNewDay;
-        distancePreviousDay = distanceNewDay;
-        countDay += 1;
-        console.log("На " + countDay + " день пробег лыжника составил " + distanceNewDay.toFixed(2) + " км");
-        if (distanceNewDay <= k) {
-            breakDay += 1;
-        } else {
-            breakDay;
+    // if (countDay>n && distanceNewDay>k) {
+    //     break;
+
+    distanceNewDay = (y/100) * distancePreviousDay + distancePreviousDay;
+    totalDistance += distanceNewDay;
+    distancePreviousDay = distanceNewDay;
+    countDay += 1;
+    if (countDay <= n) {
+        console.log("На " + countDay + " день пробег лыжника составил " + distanceNewDay.toFixed(2) + " км\n" + "Суммарный путь лыжника за " + n + " дней тренировок, составляет " + totalDistance.toFixed(2)  );
         }
-    }
-}
-console.log("Суммарный путь лыжника за " + n + " дней тренировок, составляет " + totalDistance.toFixed(2) + " км"+"\nНа "+breakDay+" день лыжнику следует прекратить увеличивать пробег, если он не должен превышать "+k+" км");
+    if (distanceNewDay <= k) {
+    console.log(+ " км"+"\nНа "+breakDay+" день лыжнику следует прекратить увеличивать пробег, если он не должен превышать "+k+" км");
     

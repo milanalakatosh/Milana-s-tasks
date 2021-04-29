@@ -7,13 +7,27 @@ let y = parseInt(readlineSync.question("На сколько % лыжник ув�
 let n = parseInt(readlineSync.question("Сколько дней тренировок: "));
 let k = parseInt(readlineSync.question("Максимальное количество км: "));
 
-let kmNewD = 0;
-let daysCount = 0;
-let kmPreviousD = x;
+let kmNewDay = 0;
+let daysCount = 1;
+let kmPreviousDay = x;
+let totalDistance = x;
+let breakDay = 1;
 
-while (kmNewD <= k) {
+while (true) {
     daysCount += 1;
-    kmNewD = (y/100) * kmPreviousD + kmPreviousD;
-    kmPreviousD = kmNewD;
+    kmNewDay = (y/100) * kmPreviousDay + kmPreviousDay;
+    kmPreviousDay = kmNewDay;
+    
+    if (daysCount <= n) {
+        totalDistance += kmNewDay;
+        console.log("На " + daysCount + " день пробег лыжника составил " + kmNewDay.toFixed(2) + " км")
+    }
+    if (kmNewDay <= k) {
+        breakDay += 1;
+    }
+
+    if (kmNewDay > k && daysCount > n) {
+        break;
+    }
 }
-console.log(daysCount);
+console.log("Суммарный путь лыжника за " + n + " дней тренировок, составляет " + totalDistance.toFixed(2) + "\nНа " + breakDay+ " день лыжнику следует прекратить увеличивать пробег, если он не должен превышать "+k+" км");

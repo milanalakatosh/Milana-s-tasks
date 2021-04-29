@@ -39,8 +39,9 @@ for (let i = 1; i <= n; ++i) {
     } 
 }
 
+games = "";
 if (gameResult === 1) {
-    let games = " игру ";
+    games = "игру";
 } else if (gameResult > 1 && gameResult < 5) {
     games = " игры "
 } else {
