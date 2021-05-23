@@ -10,8 +10,7 @@ if (n >= 1) {
 if (n > 1) {
     array.push(1);
 }
-for (let i = 2; i < n-1; ++i) {
-    array[i] = array[i-2] + array [i-1];
-    //array.push(array[i]);
+for (let i = 2; i < n; ++i) {
+    array.push(array[i-2] + array [i-1]);
 }
 console.log(array);

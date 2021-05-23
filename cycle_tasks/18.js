@@ -13,19 +13,16 @@ let b = parseFloat(readlineSync.question("Введите координаты т
 let cathetusA = a - x;
 let cathetusB = b - y
 let hypotenuse = Math.sqrt(Math.pow(cathetusA,2)+Math.pow(cathetusB, 2));
-if (hypotenuse <= r) {
-    console.log("Точка лежит в круге");
-} else {
-    console.log("Точка не лежит в круге");
-}
+
+console.log(hypotenuse <= r ? "Точка лежит в круге" : "Точка не лежит в круге");
+
 let countOfdots = 0;
-for (i = x-r; i < x+r; ++ i) {
-    for (let j = y-r; j < y+r; ++j) { 
-        if (i*i+j*j<=r*r)
-        countOfdots += 1;
-    }
+
+for (let i = Math.floor(x-r); i < Math.ceil(x+r); ++ i) {
+    for (let j = Math.floor(y-r); j < Math.ceil(y+r); ++j) { 
+        if (i*i+j*j<r*r) countOfdots += 1;
+    }   
 }
 console.log("В круг попадает " + countOfdots + " точек с целочисленными координатами");
 
 
-//console.log("точек с целочисленными координатами попадает в круг радиуса r  с центром в точке (x,y")

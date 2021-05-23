@@ -4,10 +4,6 @@ let n = [];
 let length = parseInt(readlineSync.question("Длина массива: "));
 
 for (let i = 0; i < length; ++ i) {
-    if (i === 0 || i === length - 1) {
-        n.push(1);
-    } else {
-        n.push(0);
-    }
+    n.push(i === 0 || i === length - 1 ? 1 : 0);
 }
 console.log(n);

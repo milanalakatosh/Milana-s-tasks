@@ -11,12 +11,16 @@ let myPaper = 0;
 
 for (let i = 1; i <= n; ++i) {
     let compStep = Math.floor((Math.random() * 3) + 1);
+    let compChoice = "";
     if (compStep === 1) {
         stone += 1;
+        compChoice = "камень. ";
     } else if (compStep === 2) {
         scissors += 1;
+        compChoice = "ножницы. ";
     } else {
         paper += 1;
+        compChoice = "бумагу. ";
     }
     
     let myStep = parseInt(readlineSync.question("Введите: Камень(1), ножницы(2) или бумага(3): "));
@@ -33,32 +37,18 @@ for (let i = 1; i <= n; ++i) {
     if ((myStep === 1 && compStep === 2) || (myStep === 2 && compStep === 3) || (myStep === 3 && compStep === 1)) {
         gameResult += 1;
     }
-
+    let resultOf1Game = "";
     if (compStep === myStep) {
-        if (compStep === 1) {
-            console.log("Компьютер выбрал камень. У вас ничья.");
-        } else if (compStep === 2) {
-            console.log("Компьютер выбрал ножницы. У вас ничья.");
-        } else {
-            console.log("Компьютер выбрал бумагу. У вас ничья.");
-        }
+        resultOf1Game = "У вас ничья.";
+    } else if ((compStep===1 && myStep===2) || (compStep===2 && myStep===3) || (compStep===3 && myStep===1)) { 
+        resultOf1Game = "Компьютер выйграл.";
+    } else {
+        resultOf1Game = "Вы выйграли.";
     }
-    if (compStep === 1 && myStep === 2) {
-        console.log("Компьютер выбрал камень. Компьютер выйграл.");
-    } else if (compStep === 1 && myStep === 3) {
-        console.log("Компьютер выбрал камень. Вы выйграли.");
-    } else if (compStep === 2 && myStep === 1) {
-        console.log("Компьютер выбрал ножницы. Вы выйграли.");
-    } else if (compStep === 2 && myStep === 3) {
-        console.log("Компьютер выбрал ножницы. Компьютер выйграл.");
-    } else if (compStep === 3 && myStep === 1) {
-        console.log("Компьютер выбрал бумагу. Компьютер выйграл.");
-    } else if (compStep === 3 && myStep === 2) {
-        console.log("Компьютер выбрал бумагу. Вы выйграли.");
-    }
+    console.log("Компьютер выбрал " + compChoice + resultOf1Game);
 }
 
-games = "";
+let games = "";
 if (gameResult === 1) {
     games += "игру";
 } else if (gameResult > 1 && gameResult < 5) {

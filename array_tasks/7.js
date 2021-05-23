@@ -3,14 +3,23 @@ const readlineSync = require("readline-sync");
 
 let array = [];
 let n = parseInt(readlineSync.question("Введите длину массива: "));
-let length = 0;
+let count1 = 0;
+let count0 = 0;
 
-//while (length < n/2) {
-    for (let i = 0; i < n; ++i) {
-        array.push(Math.floor(Math.random()*2)); 
-        if (array[i] === 1) {
-            length += 1;
-        }
+for (let i = 0; i < n; ++i) {
+    array.push(Math.floor(Math.random()*2)); 
+    if (array[i] === 1) {
+        count1 += 1;
+    } else {
+        count0 += 1;
     }
-
+}
+while (count1 <= count0) {
+    let index = Math.floor(Math.random()*n);
+    if (array[index] === 0) { 
+        array[index] = 1;
+        count1 += 1;
+        count0 -= 1;
+    }
+}
 console.log(array);
