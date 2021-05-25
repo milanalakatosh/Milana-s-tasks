@@ -2,7 +2,7 @@
 const readlineSync = require("readline-sync");
 
 let a = JSON.parse(readlineSync.question("Введите массив:\n> "));
-let n = parseInt(readlineSync.question("Введите количество чисел:\n> "));
+let n = a.length;
 let containsAllNumbers = false;
 
 for (let j = 1; j < n; ++j) {

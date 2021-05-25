@@ -3,10 +3,8 @@
 
 const readlineSync = require("readline-sync");
 
-//let a = JSON.parse(readlineSync.question("Введите массив:\n> "));
-//let b = JSON.parse(readlineSync.question("Введите массив:\n> "));
-let a = [1,2,3,4,5];
-let b = [1,5,7,5,1,2];
+let a = JSON.parse(readlineSync.question("Введите массив:\n> "));
+let b = JSON.parse(readlineSync.question("Введите массив:\n> "));
 let c = [];
 
 for (let i = 0; i < a.length; ++i) {

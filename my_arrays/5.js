@@ -5,7 +5,10 @@ const readlineSync = require("readline-sync");
 let a = JSON.parse(readlineSync.question("Введите массив:\n> "));
 
 for (let i = 0; i < a.length - 1; ++i) {
-    if (a[i] === a[i+1]) delete a[i];
+    if (a[i] === a[i+1]) {
+        a.splice(i, 1);
+        i -= 1;
+    }
 }
 console.log(a);
     
