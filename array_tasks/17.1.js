@@ -6,13 +6,8 @@ let increasing = true;
 let decreasing = true;
 
 for (let i = 0; i < array.length-1; ++i) {
-    if (increasing) {
-        if (array[i] < array[i+1]) increasing = true;
-        else increasing = false;
-    }
-    if (decreasing) {
-        if (array[i] > array[i+1]) decreasing = true;
-        else decreasing = false;
-    }
+    if (increasing && !(array[i] < array[i+1])) increasing = false;
+    if (decreasing && !(array[i] > array[i+1])) decreasing = false;
+    if (!increasing && !decreasing) break;
 }
 console.log(increasing ? "Массив возрастающий" : decreasing ? "Массив убывающий" : "Массив обычный");

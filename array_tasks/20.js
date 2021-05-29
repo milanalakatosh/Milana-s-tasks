@@ -7,16 +7,16 @@ let removed = false;
 let mayRemove = true;
 let increasing = true;
 
-for (let i = 0; i < array.length - 2; ++i) {
-    if (array[i] >= array [i+1]) {
+for (let i = 0; i < array.length - 1; ++i) {
+    if (array[i] >= array[i + 1]) {
         increasing = false;
-        if (array[i+2] > array[i] || i === 0) {
+        if (array[i + 1] < array[i + 2]) {
             if (!removed) removed = true;
             else {
-                mayRemove = false;
-                break;
+            mayRemove = false;
+            break;
             }
-        } else if (array[i+2] <= array[i]) {
+        } else if (array[i + 1] >= array[i + 2]) {
             mayRemove = false;
             break;
         }
@@ -24,4 +24,4 @@ for (let i = 0; i < array.length - 2; ++i) {
 }
 console.log(increasing ? "Массив и так возрастающий"
     : mayRemove ? "Из массива можно вычеркнуть 1 число так, чтобы оставшиеся числа оказались упорядоченными по возрастанию."
-    : "Из массива нельзя вычеркнуть 1 число так, чтобы оставшиеся числа оказались упорядоченными по возрастанию.");
+        : "Из массива нельзя вычеркнуть 1 число так, чтобы оставшиеся числа оказались упорядоченными по возрастанию.");

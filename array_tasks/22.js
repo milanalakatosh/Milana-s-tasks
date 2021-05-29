@@ -7,7 +7,7 @@ let a = JSON.parse(readlineSync.question("Введите массив:\n> "));
 let lastElement = a[a.length-1];
 
 for (let i = a.length - 1; i >= 0; --i ) {
-    if (i !== 0) a[i] = a[i-1];
-    else a[i] = lastElement;
+    a[i] = a[i-1];
 }
+a[0] = lastElement;
 console.log(a);
