@@ -13,7 +13,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/str_tasks/5.js",
+            "program": "${workspaceFolder}/str_tasks/15.2.js",
             "console": "integratedTerminal"
         }
     ]
