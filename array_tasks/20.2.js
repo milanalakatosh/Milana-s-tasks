@@ -14,16 +14,17 @@ for (let i = 0; i < array.length - 1; ++i) {
 }
 if (!increasing) {
     for (let toRemove = 0; toRemove < array.length; ++toRemove) {
-        let array2 = array.concat();
-        array2.splice(toRemove, 1);
-
         let increasingAfterRemoving = true;
+        let prevElement;
+
         for (let j = 0; j < array.length-1; ++j) {
-            if (array2[j] >= array2[j+1]) {
+            if (j === toRemove) continue;
+            if (prevElement !== undefined && prevElement >= array[j]) {
                 increasingAfterRemoving = false;
                 break;
             }
-        }
+            prevElement = array[j];
+        }    
         if (increasingAfterRemoving) {
             mayRemove = true;
             break;
