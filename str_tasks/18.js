@@ -5,8 +5,12 @@ const readlineSync = require("readline-sync");
 
 let naturalNumber = parseInt(readlineSync.question("Введите натуральное число:\n> "));
 let str = naturalNumber.toString();
+let strNew = "";
 
-for (let i = str.length - 4; i >= 0; i -= 3) {
-    str += " ";
+
+for (let i = 1; i < str.length-1; i += 3) {
+    let changingfElments = naturalNumber % 1000;
+    str = str.replace(changingfElments, " " + changingfElments);
+    naturalNumber -= changingfElments;
 }
 console.log(str);
