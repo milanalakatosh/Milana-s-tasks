@@ -17,7 +17,7 @@ for (let fragment of arrayOfStr) {
     do {
         r = Math.floor(Math.random(0) * randomSymbols.length-1);
     }   while (fragment[1] === randomSymbols[r]);
-    newArray.push(fragment.slice(0,1) + randomSymbols[r] + fragment.slice(2));
+    fragment = fragment[0] + randomSymbols[r] + fragment[2];
 }
 
 console.log(newArray.sort());
