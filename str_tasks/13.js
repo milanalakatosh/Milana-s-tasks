@@ -23,6 +23,7 @@ for (let i = 0; i < clearArrayOfWord1.length; ++i) {
             dataOfIncluding += 1;
         } 
     }
-    if (dataOfIncluding === 1 && !result.includes(clearArrayOfWord1[i])) result.push(clearArrayOfWord1[i]);
+    if (dataOfIncluding === 1 && !result.includes(clearArrayOfWord1[i])) 
+        result.push(clearArrayOfWord1[i]);
 }
 console.log(result);

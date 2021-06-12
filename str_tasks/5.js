@@ -5,19 +5,20 @@ const readlineSync = require("readline-sync");
 
 let str = readlineSync.question("Введите строку:\n> ");
 let randomSymbols = "abcdefghijklmnopqrstuvwxyz123456789";
-let r;
 
 let arrayOfStr = [];
 for (let i = 0; i < str.length - 2; i += 3) {
     arrayOfStr.push(str[i] + str[i+1] + str[i+2]);
 }
 
-let newArray = [];
-for (let fragment of arrayOfStr) {
+for (let i = 0; i < arrayOfStr.length; ++i) {
+    let fragment = arrayOfStr[i];
+    let randomSymbol;
     do {
-        r = Math.floor(Math.random(0) * randomSymbols.length-1);
-    }   while (fragment[1] === randomSymbols[r]);
-    fragment = fragment[0] + randomSymbols[r] + fragment[2];
+        let r = Math.floor(Math.random(0) * randomSymbols.length-1);
+        randomSymbol = randomSymbols[r];
+    }   while (fragment[1] === randomSymbol);
+    arrayOfStr[i] = fragment[0] + randomSymbol + fragment[2];
 }
 
-console.log(newArray.sort());
+console.log(arrayOfStr.sort());

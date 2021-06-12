@@ -3,14 +3,17 @@
 //Например, число 1234567 преобразуется в 1 234 567.
 const readlineSync = require("readline-sync");
 
-let naturalNumber = parseInt(readlineSync.question("Введите натуральное число:\n> "));
-let str = naturalNumber.toString();
-let strNew = "";
+let naturalNumber = readlineSync.question("Введите натуральное число:\n> ");
+let revNumbers = naturalNumber.split("").reverse().join("");
+let newStr ="";
+let length = 0;
 
-
-for (let i = 1; i < str.length-1; i += 3) {
-    let changingfElments = naturalNumber % 1000;
-    str = str.replace(changingfElments, " " + changingfElments);
-    naturalNumber -= changingfElments;
+for (let i = 0; i < revNumbers.length; ++i) {
+    newStr += revNumbers[i];
+    length += 1;
+    if (length === 3) {
+        newStr += " "
+        length = 0
+    }
 }
-console.log(str);
+console.log(newStr.split("").reverse().join(""));

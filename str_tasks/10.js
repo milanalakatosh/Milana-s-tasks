@@ -3,15 +3,21 @@
 
 const readlineSync = require("readline-sync");
 
-let str = readlineSync.question("Введите строку:\n> ");
-let symbol = readlineSync.question("Введите разделители:\n> ");
+let str = readlineSync.question("Введите строку:\n");
+let symbol = readlineSync.question("Введите разделители:\n");
 let symbolArray = symbol.split("");
 
-for (let i = 0; i < str.length; ++i) {
-    if (symbolArray.includes(str[i])) str = str.replace(str[i], " ");
+// for (let i = 0; i < str.length; ++i) {
+//     if (symbolArray.includes(str[i])) str = str.replace(str[i], " ");
+// }
+// let arrayNew = str.split(" ");
+for (let i = 0; i < symbolArray.length; ++i) {  
+    str = str.split(symbolArray[i]).join(" ");
 }
-let arrayNew = str.split(" ");
-console.log(arrayNew);
+while (str.includes("  ")) {
+    str = str.replace("  ", " ");
+}
+console.log(str);
 
 
 
