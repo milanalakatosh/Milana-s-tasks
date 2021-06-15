@@ -2,8 +2,8 @@ const readlineSync = require ("readline-sync");
 
 let str = readlineSync.question("String?\n> ");
 
-array = str.split(" ");
-array2 = [];
+let array = str.split(" ");
+let array2 = [];
 
 for (let i = 0; i < array.length; ++i){
     if (array[i] !== '') {

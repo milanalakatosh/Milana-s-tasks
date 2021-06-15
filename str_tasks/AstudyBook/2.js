@@ -2,11 +2,10 @@
 const readlineSync = require("readline-sync");
 
 let n = parseInt(readlineSync.question("количество слов?\n> "));
-let string = "";
+let array = [];
 
 for (let i = 1; i <= n; ++i) {
     let word = readlineSync.question(i + " word?\n> ");
-    if (i !== n) string += word + ", ";
-    else string += word;
+    array.push(word);
 }
-console.log(string);
+console.log(array.join(", "));

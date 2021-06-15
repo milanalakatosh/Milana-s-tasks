@@ -21,4 +21,4 @@ for (let i = 0; i < arrayOftext.length; ++i) {
         result.push(arrayOftext[i]);
     }
 }
-    console.log(result.sort().join(", "));
+console.log(result.sort().join(", "));
