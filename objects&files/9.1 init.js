@@ -10,13 +10,19 @@
 //   completed: true, // true - выполнено, false - не выполнено
 // }
 const fs = require("fs");
-const readlineSync = require("readline-sync");
 
-let deal = readlineSync.question("Add a new deal?\n> ");
 let toDoList = [
     {
-        deal: deal,
-        done: false,
+        title: "feed a cat",
+        completed: true,
+    },
+    {
+        title: "buy products",
+        completed: false,
+    },
+    {
+        title: "watch TV",
+        completed: false,
     },
 ];
 

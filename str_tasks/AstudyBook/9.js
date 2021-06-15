@@ -23,7 +23,7 @@ for (let i = 0; i < str.length; ++i) {
 }
 let expression;
 for (let j = 0; j < array.length; j += 2) {
-    if (array[j-1] === undefined) expression = Number(array[j]);
+    if (j === 0) expression = Number(array[j]);
     else if (array[j-1] === "+") expression += Number(array[j]);
     else if (array[j-1] === "-") expression -= Number(array[j]);
     else if (array[j-1] === "*") expression *= Number(array[j]);

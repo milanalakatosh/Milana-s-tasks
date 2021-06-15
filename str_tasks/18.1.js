@@ -5,7 +5,6 @@ const readlineSync = require("readline-sync");
 
 let naturalNumber = readlineSync.question("Введите натуральное число:\n> ");
 let arrayOfNaturalNumber = naturalNumber.split("");
-let newStr = "";
 
 for (let i = 1; i <= 2; ++i) {
     if (arrayOfNaturalNumber.length % 3 !== 0 ) arrayOfNaturalNumber.unshift(0);
