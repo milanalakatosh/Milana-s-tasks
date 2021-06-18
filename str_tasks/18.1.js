@@ -4,16 +4,16 @@
 const readlineSync = require("readline-sync");
 
 let naturalNumber = readlineSync.question("Введите натуральное число:\n> ");
-let arrayOfNaturalNumber = naturalNumber.split("");
+let newStr = "";
 
-for (let i = 1; i <= 2; ++i) {
-    if (arrayOfNaturalNumber.length % 3 !== 0 ) arrayOfNaturalNumber.unshift(0);
-    else break;
+while (naturalNumber.length % 3 !== 0 ) {
+    naturalNumber = "0" + naturalNumber;
 }
-for (let j = 2; j < arrayOfNaturalNumber.length; j += 3) {
-    arrayOfNaturalNumber[j] = arrayOfNaturalNumber[j] + " ";
+for (let j = 0; j < naturalNumber.length; ++j) {
+    newStr += naturalNumber[j];
+    if ((j+1) % 3 === 0 && j !== naturalNumber.length-1) newStr += " ";
 }
-while (arrayOfNaturalNumber[0] === 0) {
-    arrayOfNaturalNumber.shift(arrayOfNaturalNumber[0]);
+while (newStr[0] === "0") {
+    newStr = newStr.slice(1);
 }
-console.log(arrayOfNaturalNumber.join(""));
+console.log(newStr);

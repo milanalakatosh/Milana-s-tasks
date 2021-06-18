@@ -6,5 +6,5 @@ let str = readlineSync.question("str?\n> ");
 let p = parseInt(readlineSync.question("индекс начала куска строки?\n> "));
 let l = parseInt(readlineSync.question("длина?\n> "));
 
-let cuttingPart = str.slice(p, p+l);
-console.log(str.replace(cuttingPart, ""));
+str = str.slice(0, p) + str.slice(p+l);
+console.log(str);

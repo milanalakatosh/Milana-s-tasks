@@ -17,6 +17,7 @@
   "homepage": "https://github.com/milanalakatosh/Milana-s-tasks#readme",
   "dependencies": {
     "@types/node": "^14.14.43",
+    "chalk": "^4.1.1",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
