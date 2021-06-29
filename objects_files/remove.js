@@ -13,10 +13,14 @@ let todoRemove = parseInt(readFileSync.question("remove?\n> "));
 
 let toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
 
-let removed = true;
-if (todoRemove >= 0 && todoRemove < toDoList.length) toDoList.splice(todoRemove, 1);
-else removed = false;
+if (todoRemove >= 0 && todoRemove < toDoList.length) {
+    toDoList.splice(todoRemove, 1);
+    fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
+    console.log("done!"); 
+} else {
+    console.log("wrong number");
+}
 
-fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
 
-console.log(removed ? "done!" : "wrong number");
+
+

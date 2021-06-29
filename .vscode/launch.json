@@ -13,7 +13,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/objects&files/list-all.js",
+            "program": "${workspaceFolder}/objects&files/test.js",
             "console": "integratedTerminal"
         }
     ]

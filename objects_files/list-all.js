@@ -6,8 +6,6 @@ let toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
 
 for (let i = 1; i <= toDoList.length; ++i) {
     let toDo = toDoList[i-1];
-    let doCompleted;
-    if (toDo.completed) doCompleted = "[x]";
-    else doCompleted = "[ ]";
+    let doCompleted = toDo.completed ? "[x]" : "[ ]";
     console.log(doCompleted + " " + i + ". " + toDo.title);
 }

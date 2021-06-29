@@ -12,19 +12,17 @@ let toggle = parseInt(readlineSync.question("toggle?\n> "));
 
 let toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
 
-let done = true;
-let x;
 if (toggle >= 0 && toggle < toDoList.length) {
-    if (toDoList[toggle].completed) toDoList[toggle].completed = false;
-    else toDoList[toggle].completed = true;
-    if (toDoList[toggle].completed) x = "[x]";
-    else x = "[ ]";
-} else {
-    done = false;
-}
-fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
+    let toDo = toDoList[toggle];
+    toDo.completed = !toDo.completed;
 
-console.log(done ? x + " " + toggle + ". " + toDoList[toggle].title : "wrong number");
+    fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
+
+    let x = toDo.completed ? "[x]" : "[ ]";
+    console.log(x + " " + toggle + ". " + toDo.title);
+} else {
+    console.log("wrong number");
+}
 
 
 

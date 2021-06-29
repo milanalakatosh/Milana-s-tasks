@@ -7,7 +7,7 @@ let b = parseFloat(readlineSync.question("Введите длину 2?\n> "));
 let c = parseFloat(readlineSync.question("Введите длину 3?\n> "));
 
 let p = (a + b + c) / 2;
-S = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+let S = Math.sqrt(p * (p - a) * (p - b) * (p - c));
 
 if (a + b > c && b + c > a && a + c > b) {
     console.log("треугольник существует");

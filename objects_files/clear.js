@@ -7,13 +7,9 @@ const fs = require("fs");
 
 let toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
 
-let x = 0;
+let x = [];
 for (let i = 0; i < toDoList.length; ++i) {
-    if (!toDoList[i].completed) {
-        toDoList.splice(i, 1);
-        x += 1;
-        i --;
-    }
+    if (toDoList[i].completed) x.push(toDoList[i]);
 }
-fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
+fs.writeFileSync("toDoList.json", JSON.stringify(x));
 console.log(x + " todos removed");
