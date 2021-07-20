@@ -3,20 +3,20 @@
 //сначала идёт список невыполненных дел по алфавиту, затем идёт список выполненных дел по алфавиту
 //Записать отсортированный список в файл todos.json
 //Вывести отсортированный список дел
-
-const fs = require("fs");
+import * as fs from 'fs';
 
 let toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
 
-let array1 = [{}];
-let array2 = [{}];
-for (let i = 0; i < toDoList.length; ++i) {
-    if (!toDoList[i].completed) array1.push(toDoList[i]);
-    else array2.push(toDoList[i]);
+function comparator (a, b) {
+    if (a.completed && !b.completed) {
+        return 1;
+    }
+    else if (!a.completed && b.completed) {
+        return -1;
+    } else {
+        return a.title.localeCompare(b.title);
+    }  
 }
-array1 = array1.sort();
-array2 = array2.sort();
-
-//JSON.sort();
+toDoList.sort(comparator);
+console.log(toDoList);
 fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
-console.log(array1, array2);

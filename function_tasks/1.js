@@ -1,31 +1,31 @@
-const fs = require("fs");
+import chalk from 'chalk';
+import * as fs from 'fs';
 // //loadTodos(): object[]
 // //Читает список дел из файла todos.json и вовзращает их в виде массива.
-function loadTodos() {
+export function loadTodos() {
     return JSON.parse(fs.readFileSync("toDoList.json"));
 }
 
 // //saveTodos(todos: object[]): void	
 // //Записывает список дел в файл todos.json
-function saveTodos(toDoList) {
+export function saveTodos(toDoList) {
     fs.writeFileSync("toDoList.json", JSON.stringify(toDoList));
 }
 
 // //renderTodo(num: number, todo: object): string	
 // //Возвращает строку вида “[x] 1. feed cat”. num - порядковый номер дела, todo - само дело.
-function renderTodo(num, todo) {
-    let toDoList = loadTodos();
-    let x = [ ];
-    if (todo.completed[num-1] === true) x = [x];
-    return x + " " + num + ". " + todo.title[num-1];
+export function renderTodo(num, todo, y) {
+    const x = todo.completed ? "[x]" : "[ ]";
+    const result = x + " " + num + ". " + (y === undefined ? todo.title : y);
+    return result;
 }
 
 // //initTodos(): void	
 // //В случае если файла todos.json не сущ-ет записывает в файл todos.json начальный список задач. 
 // //Использует функцию saveTodos. 
-function initTodos() {
+export function initTodos() {
     if (!fs.existsSync("toDoList.json")) {
-        let toDoList = [
+        const toDoList = [
             {
                 title: "watch TV",
                 completed: false
@@ -45,14 +45,14 @@ function initTodos() {
 //listTodos(type: string): void	Выводит список задач. type может быть ‘all’ (все задачи), ‘completed’ 
 //(только выполненные), ‘uncompleted’ (только невыполненные). 
 //Для чтения списка задач использовать функцию loadTodos, для вывода каждой задачи renderTodo.
-function listTodos(type) {
-    let toDoList = loadTodos();
-    for (let todo of toDoList) {
+export function listTodos(type) {
+    const toDoList = loadTodos();
+    for (let i = 0; i < toDoList.length; ++i) {
+        const todo = toDoList[i];
         if (type === "all" || (type === "completed" && todo.completed) ||
             (type === "uncompleted" && !todo.completed)) {
-        let result = renderTodo();//как это вывести
-        console.log(result);//надо изменять renderTodo
-        }   
+            console.log(renderTodo(i + 1, todo));
+        }
     }
 }
 //addTodo(title: string): void  Функция должна сделать всё, что написано в задаче 9.5 кроме 1пункта:
@@ -60,14 +60,15 @@ function listTodos(type) {
 //Добавить в этот список дело, которое добавил пользователь, при этом флаг completed должен быть равен false
 //Записать дополненный список обратно в файл todos.json
 //title - это название нового дела. Использует функции loadTodos и saveTodos.
-function addTodo(title) {
-    let toDoList = loadTodos();
-    let newDo = {
+export function addTodo(title) {
+    const toDoList = loadTodos();
+    const newDo = {
         title: title,
         completed: false,
     };
     toDoList.push(newDo);
     saveTodos(toDoList);
+    console.log("done!");
 }
 //toggleTodo(num: number): void  Функция должна сделать всё, что написано в задаче 9.6 кроме 1 пункта.
 //Прочитать список дел из файла todos.json, изменить флаг дела num completed дела на противоположный
@@ -76,21 +77,29 @@ function addTodo(title) {
 //Если такого дела нет, то вывести сообщение “wrong number” (неправильный номер) 
 //num - это номер дела, состояние которого нужно изменить. 
 //Использует функции loadTodos, saveTodos и renderTodo.
-function toggleTodo(num) {
-    let toDoList = loadTodos();
-    if (toDoList[num - 1].completed) toDoList[num - 1].completed = false;
-        else toDoList[num - 1].completed = true;
+export function toggleTodo(num) {
+    const toDoList = loadTodos();
+    if (toDoList.length + 1 >= num) {
+        const todo = toDoList[num - 1];
+        //todo.completed = todo.completed ? false : true;
+        todo.completed = !todo.completed;
         saveTodos(toDoList);
-    for (let todo of toDoList) {
-        renderTodo()//аналогично
+        console.log(renderTodo(num, todo));
+    } else {
+        console.log("wrong number");
     }
 }
 //removeTodo(num: number): void  Функция должна сделать всё, что написано в задаче 9.7 кроме 1 пункта. 
 //num - это номер дела, которое нужно удалить. Использует функции loadTodos и saveTodos.
-function removeTodo(num) {
-    let toDoList = loadTodos();
-        toDoList.splice(num, 1);
+export function removeTodo(num) {
+    const toDoList = loadTodos();
+    if (toDoList.length + 1 >= num) {
+        toDoList.splice(num - 1, 1);
         saveTodos(toDoList);
+        console.log("done!");
+    } else {
+        console.log("wrong number");
+    }
 }
 //clearTodos(): void	
 //Функция должна сделать всё, что написано в задаче 9.8. Прочитать список дел из файла todos.json
@@ -99,31 +108,35 @@ function removeTodo(num) {
 //Вывести сообщение “{x} todos removed” ({x} дел удалено), где {x} - 
 //это количество удалённых из списка дел
 //Использует функции loadTodos и saveTodos.
-function clearTodos() {
-    let toDoList = loadTodos();
-    let toDoList2 = [];
+export function clearTodos() {
+    const toDoList = loadTodos();
+    const toDoList2 = [];
     //посмотреть задачу 9.7 clear (х) :длина toDoList.length-toDoList2.length)??
-    for (let todo of toDoList) {
+    for (const todo of toDoList) {
         if (!todo.completed) {
             toDoList2.push(todo)
         }
     }
     saveTodos(toDoList2);
+    const n = toDoList.length - toDoList2.length;
+    console.log(n + " todos removed");
 }
 //searchTodos(str: string): void  Только для тех кто сделал задачу 9.9. 
 //Функция должна сделать всё, что написано в задаче 9.9 кроме 1 пункта. str - это строка для поиска. 
 //Использует функции loadTodos, saveTodos и renderTodo. 
 //В renderTodo нужно добавить третий параметр highlight - подстрока, которую нужно подсветить.
-function searchTodos(str) {
-    let toDoList = loadTodos();
+export function searchTodos(str) {
+    const toDoList = loadTodos();
+    let found = false;
     for (let i = 0; i < toDoList.length; ++i) {
-        let toDo = toDoList[i];
+        const toDo = toDoList[i];
         let index;
         let fromIndex = 0;
-        let arrayIndex = [];
+        const arrayIndex = [];
         do {
-            index = toDo.title.toLowerCase().indexOf(x, fromIndex);
+            index = toDo.title.toLowerCase().indexOf(str, fromIndex);
             if (index !== -1) {
+                found = true;
                 arrayIndex.push(index);
                 fromIndex = index + 1;
             }
@@ -134,17 +147,33 @@ function searchTodos(str) {
             let begin = 0;
             for (let a = 0; a < arrayIndex.length; ++a) {
                 todoTitleCopy += toDo.title.slice(begin, arrayIndex[a]) +
-                    chalk.red(toDo.title.slice(arrayIndex[a], arrayIndex[a] + x.length));
-                begin = arrayIndex[a] + x.length;
+                    chalk.red(toDo.title.slice(arrayIndex[a], arrayIndex[a] + str.length));
+                begin = arrayIndex[a] + str.length;
                 if (a === arrayIndex.length - 1) {
                     todoTitleCopy += toDo.title.slice(begin);
                 }
             }
-            let x = toDo.completed ? "[x]" : "[ ]";
-            console.log(x + " " + i + ". " + todoTitleCopy);//аналогично
+            console.log(renderTodo(i + 1, toDo, todoTitleCopy));
         }
     }
+    if (!found) console.log("no matched todos");
+}
 
+export function sortTodos() {
+    const toDoList = loadTodos();
+    function comparator (a, b) {
+        if (a.completed && !b.completed) {
+            return 1;
+        }
+        else if (!a.completed && b.completed) {
+            return -1;
+        } else {
+            return a.title.localeCompare(b.title);
+        }  
+    }
+    toDoList.sort(comparator);
+    saveTodos(toDoList);
+    console.log(toDoList);
 }
 
 

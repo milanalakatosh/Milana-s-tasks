@@ -5,11 +5,14 @@
 //Вывести сооб-е “{x} todos removed” ({x} дел удалено),где {x} - это кол-во удалённых из списка дел
 const fs = require("fs");
 
-let toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
+const toDoList = JSON.parse(fs.readFileSync("toDoList.json"));
 
-let x = [];
+const x = [];
 for (let i = 0; i < toDoList.length; ++i) {
     if (toDoList[i].completed) x.push(toDoList[i]);
 }
+
 fs.writeFileSync("toDoList.json", JSON.stringify(x));
-console.log(x + " todos removed");
+
+const n = toDoList.length - x.length;
+console.log(n + " todos removed");
