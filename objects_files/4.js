@@ -18,9 +18,10 @@ while (true) {
     if (product !== "0") {
         const arrProduct = product.split(" ");
         const productName = arrProduct[0];
-        products2[productName] = {};
-        products2[productName].price = parseFloat(arrProduct[1]);
-        products2[productName].weight = parseFloat(arrProduct[2]);
+        products2[productName] = {
+            price: parseFloat(arrProduct[1]),
+            weight: parseFloat(arrProduct[2]),
+        };
     } else {
         break;
     }
