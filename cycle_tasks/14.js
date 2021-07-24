@@ -1,25 +1,24 @@
 //Вывести 3 случайных числа от 0 до 100 без повторений.
-let a = Math.floor(Math.random()*101); 
-let b = Math.floor(Math.random()*101);
-let bCheck = false;
-let c = Math.floor(Math.random()*101);
-let cCheck = false;
+const firstNumber = Math.floor(Math.random()*101); 
+console.log("1 число = " + firstNumber)
 
-console.log("1 число = " + a)
+const secondNumber = Math.floor(Math.random()*101);
+const thirdNumber = Math.floor(Math.random()*101);
 
-while (bCheck === false) {
-    if (a === b) {
-        b = Math.floor(Math.random()*101);
-    } else {
-        bCheck = true;
-        console.log ("2 число = " + b);
+let differentNumbers = false;
+
+checkNumber(secondNumber, 2)
+checkNumber(thirdNumber, 3)
+
+
+function checkNumber(num, ordinalNumber) {
+    while (differentNumbers === false) {
+        if (firstNumber===secondNumber || firstNumber===thirdNumber || secondNumber===thirdNumber) {
+            num = Math.floor(Math.random()*101);
+        } else {
+            differentNumbers = true;
+        }
     }
+    console.log (ordinalNumber + " число = " + num);
 }
-while (cCheck === false) {
-    if (c === a || c === b) {
-        c = Math.floor(Math.random()*101);
-    } else {
-        cCheck = true;
-        console.log ("3 число = " + c);
-    }
-}
+    

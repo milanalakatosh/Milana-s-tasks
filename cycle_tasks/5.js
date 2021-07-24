@@ -1,31 +1,43 @@
-// а) пробег лыжника за второй, третий, ..., n-ный день тренировок; 
-// б) какой суммарный путь он пробежал за m дней тренировок. 
-// в) в какой день ему следует прекратить увеличивать пробег, если он не должен превышать k км?
+//в какой день ему следует прекратить увеличивать пробег, если он не должен превышать k км?
 
-const readlineSync = require("readline-sync");
+import readlineSync from "readline-sync";
 
-let x = parseInt(readlineSync.question("Сколько км лыжник пробежал в 1 день: "));
-let y = parseInt(readlineSync.question("На сколько % лыжник увеличивал пробег от пробега предыдущего дня: "));
-let n = parseInt(readlineSync.question("Сколько дней тренировок: "));
-let k = parseInt(readlineSync.question("Максимальное количество км: "));
+const kmAmountFirstDay = parseInt(readlineSync.question("Сколько км лыжник пробежал в 1 день: "));
+const percentOfIncreasing = 
+    parseInt(readlineSync.question("На сколько % лыжник увеличивал пробег от пробега предыдущего дня: "));
+let trainingDaysAmount = parseInt(readlineSync.question("Сколько дней тренировок: "));
+let maxKmAmount = parseInt(readlineSync.question("Максимальное количество км: "));
 
-let distanceNewDay = 1;
-let distancePreviousDay = x;
-let countDay = 1;
+let kmNewDay = 0;
+let daysCount = 1;
+let kmPreviousDay = kmAmountFirstDay;
+let totalDistance = kmAmountFirstDay;
 let breakDay = 1;
-let totalDistance = x;
 
-while (true) {
-    // if (countDay>n && distanceNewDay>k) {
-    //     break;
+countKmOfNewDay()
 
-    distanceNewDay = (y/100) * distancePreviousDay + distancePreviousDay;
-    totalDistance += distanceNewDay;
-    distancePreviousDay = distanceNewDay;
-    countDay += 1;
-    if (countDay <= n) {
-        console.log("На " + countDay + " день пробег лыжника составил " + distanceNewDay.toFixed(2) + " км\n" + "Суммарный путь лыжника за " + n + " дней тренировок, составляет " + totalDistance.toFixed(2)  );
+function countKmOfNewDay() {
+    while (true) {
+        daysCount += 1;
+        kmNewDay = (percentOfIncreasing/100) * kmPreviousDay + kmPreviousDay;
+        kmPreviousDay = kmNewDay;
+        
+        if (daysCount <= trainingDaysAmount) {
+            totalDistance += kmNewDay;
+            console.log("На " + daysCount + " день пробег лыжника составил " + kmNewDay.toFixed(2) 
+            + " км")
         }
-    if (distanceNewDay <= k) {
-    console.log(+ " км"+"\nНа "+breakDay+" день лыжнику следует прекратить увеличивать пробег, если он не должен превышать "+k+" км");
+        if (kmNewDay <= maxKmAmount) {
+            breakDay += 1;
+        }
     
+        if (kmNewDay > maxKmAmount && daysCount > trainingDaysAmount) {
+            break;
+        }
+    }
+}
+
+console.log("Суммарный путь лыжника за " + trainingDaysAmount + " дней тренировок, составляет " + 
+    totalDistance.toFixed(2) + "\nНа " + breakDay + 
+    " день лыжнику следует прекратить увеличивать пробег, если он не должен превышать " + 
+    maxKmAmount + " км");
