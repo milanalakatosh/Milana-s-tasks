@@ -17,7 +17,7 @@ function createPassword() {
     checkPasswordForCorrectness()
     console.log(password);
 }
- 
+
 function checkPasswordForCorrectness() {
     let hasabc = false;
     let hasABC = false;
@@ -44,7 +44,7 @@ function checkPasswordForCorrectness() {
 function changePasswordIfNecessary(symbol) {
     let index;
     index = Math.floor(Math.random() * 11);
-    password = password.slice(0, index) + abc[Math.floor(Math.random() * symbol.length)] +
+    password = password.slice(0, index) + symbol[Math.floor(Math.random() * symbol.length)] +
         password.slice(index + 1);
     return password;
 }
