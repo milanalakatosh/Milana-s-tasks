@@ -5,47 +5,45 @@ const symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 const abc = "abcdefghijklmnopqrstuvwxyz";
 const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
-let password = "";
+// let password = "";
 
-createPassword()
+createPassword();
 
 function createPassword() {
+    let password = "";
     for (let i = 0; i < 10; ++i) {
         let r = Math.floor(Math.random() * symbols.length);
         password += symbols[r];
     }
-    checkPasswordForCorrectness()
-    console.log(password);
+    return correctPassword(password);
 }
 
-function checkPasswordForCorrectness() {
-    let hasabc = false;
-    let hasABC = false;
-    let hasNumbers = false;
-    while (!hasabc || !hasABC || !hasNumbers) {
-        for (let j = 0; j < password.length; ++j) {
-            if (abc.includes(password[j])) hasabc = true;
-            if (ABC.includes(password[j])) hasABC = true;
-            if (numbers.includes(password[j])) hasNumbers = true;
-        }
-        if (!hasabc) {
-            changePasswordIfNecessary(abc)
-        }
-        if (!hasABC) {
-            changePasswordIfNecessary(ABC)
-        } 
-        if (!hasNumbers) {
-            changePasswordIfNecessary(numbers)
-        }
+function correctPassword(password) {
+    let abcResult;
+    let ABCResult;
+    let numbersResult;
+    do {
+        abcResult =  tryCorrectStrToHaveSymbol(password, abc);
+        ABCResult = tryCorrectStrToHaveSymbol(abcResult.str, ABC);
+        numbersResult = tryCorrectStrToHaveSymbol(ABCResult.str, numbers);
+        password = numbersResult.str;
+    } while (abcResult.wasChange || ABCResult.wasChange || numbersResult.wasChange);
+    return password;
+}
+
+function tryCorrectStrToHaveSymbol(str, dict) {
+    let hasSymbol = false;
+    for (const symbol of str) {
+        if (dict.includes(symbol)) hasSymbol = true;
     }
-    return password;
+    if (!hasSymbol) {
+        const index = Math.floor(Math.random() * 11);
+        str = str.slice(0, index) + dict[Math.floor(Math.random() * dict.length)] +
+            str.slice(index + 1);
+    }
+    return {
+        str: str,
+        wasChange: !hasSymbol
+    };
 }
 
-function changePasswordIfNecessary(symbol) {
-    let index;
-    index = Math.floor(Math.random() * 11);
-    password = password.slice(0, index) + symbol[Math.floor(Math.random() * symbol.length)] +
-        password.slice(index + 1);
-    return password;
-}
-    

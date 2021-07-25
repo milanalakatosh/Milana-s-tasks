@@ -7,35 +7,43 @@ const readlineSync = require("readline-sync");
 let str1 = readlineSync.question("Введите слово:\n> ");
 let str2 = readlineSync.question("Введите слово:\n> ");
 
-let content = false;
-let equal;
-let longerStr;
-let smallerStr;
+function checkStrings() {
+    checkEquality(str1, str2)
+    if (!checkEquality(str1, str2)) {
+        checkStringsLength(str1, str2)
+    }
 
-if (str1.length === str2.length) {
-    equal = true;
-} else if (str1.length > str2.length) {
-    longerStr = str1;
-    smallerStr = str2;
-} else {
-    longerStr = str2;
-    smallerStr = str1;
 }
-if (!equal) {
+
+function checkContensOfStrings(x, y) {
+    let content = false;
     let searchString = "";
-    for (let i = 0; i < smallerStr.length; ++i) {
-        for (let j = 0; j < longerStr.length; ++j) {
-            if (smallerStr[i] === longerStr[j]) {
-                searchString += smallerStr[i];
+    for (let i = 0; i < y.length; ++i) {
+        for (let j = 0; j < x.length; ++j) {
+            if (y[i] === x[j]) {
+                searchString += y[i];
             }
-            if (searchString === smallerStr) {
+            if (searchString === y) {
                 content = true;
                 break;
             }
         }
-        if (content) break;
+    }
+    if (content) console.log("меньшая по длине строка содержится в большей");
+    else console.log("меньшая по длине строка содержится в большей");
+}
+
+function checkStringsLength(x, y) {
+    if (x.length > y.length) return function checkContensOfStrings(x, y)
+    else return function checkContensOfStrings(y, x)
+}
+
+function checkEquality(x, y) {
+    if (x.length === y.length) {
+        console.log("Строки по длине одинаковые");
+    } else {
+        return false;
     }
 }
-console.log(equal ? "Строки по длине одинаковые"
-    : content ? "меньшая по длине строка содержится в большей"
-        : "меньшая по длине строка не содержится в большей");
+
+

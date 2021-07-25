@@ -11,6 +11,7 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
+        "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
+        semi: ["error", "always"]
     }
 };
