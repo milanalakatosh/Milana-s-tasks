@@ -5,7 +5,6 @@ const symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 const abc = "abcdefghijklmnopqrstuvwxyz";
 const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
-// let password = "";
 
 createPassword();
 
