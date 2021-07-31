@@ -1,5 +1,5 @@
 //Дан массив из n элементов. Переставьте его элементы случайным образом.
-const readlineSync = require("readline-sync");
+import readlineSync from "readline-sync";
 
 let a = JSON.parse(readlineSync.question("Введите массив:\n> "));
 let n = a.length;

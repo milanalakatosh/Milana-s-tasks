@@ -6,7 +6,7 @@ const abc = "abcdefghijklmnopqrstuvwxyz";
 const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
 
-createPassword();
+console.log(createPassword());
 
 function createPassword() {
     let password = "";
