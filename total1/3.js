@@ -3,8 +3,7 @@
 import _ from "lodash";
 
 let sentence = "    моРОз    И  солнце -  день чудесный     ";
-sentence = _.trim(sentence);
-sentence = _.capitalize(sentence);
+sentence = _.trim(_.capitalize(sentence));
 while (sentence.includes("  ")) {
     sentence = sentence.replace("  ", " ");
 }

@@ -8,17 +8,23 @@ const firstDayWeek = readlineSync.question("Введите первый день
 const dateOfFirstLesson = parseInt(readlineSync.question("Введите дату первого урока?\n> "));
 
 const scheduleOfMathForMonth = [];
-let sunday = 1;
-if (firstDayWeek === "понедельник") sunday += 6;
-if (firstDayWeek === "вторник") sunday += 5;
-if (firstDayWeek === "среда") sunday += 4;
-if (firstDayWeek === "четверг") sunday += 3;
-if (firstDayWeek === "пятница") sunday += 2  ;
-if (firstDayWeek === "суббота") sunday += 1;
+let dateOfSunday = getDateOfSunday(firstDayWeek);
 
-console.log(sunday);
+function getDateOfSunday(firstDayWeek) {
+    switch (firstDayWeek) {
+        case "понедельник": return 7;
+        case "вторник": return 6;
+        case "среда": return 5;
+        case "четверг": return 4;
+        case "пятница": return 3;
+        case "суббота": return 2;
+        default: return 1;
+    }
+}
+
+console.log(dateOfSunday);
 for (let i = dateOfFirstLesson; i <= amountOfDaysInMonth; i++) {
-    if (i !== sunday && i !== sunday+7 && i !== sunday+14 && i !== sunday+21 && i !== sunday+28) {
+    if (i !== dateOfSunday && i !== (dateOfSunday%7 === 0)) {
         scheduleOfMathForMonth.push(i);
         i++;
     }
