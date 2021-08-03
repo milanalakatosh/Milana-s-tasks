@@ -2,29 +2,29 @@
 //Найдите топ 3 самых популярных паролей.
 import fs from "fs";
 import _ from "lodash";
+import path from 'path';
 
-const text = fs.readFileSync('passwords.txt').toString();
-const arr = text.split('\n');
-let passwords = [];
+import { dirName } from "../utils.js";
 
-for (let j = 0; j < arr.length; ++j) {
-    let str = arr[j].split(" ");
-    passwords.push(str[1]);
-}
 
-const arrayPopular = [];
-let maxCount = 1;
-for (let i = 0; i < passwords.length; ++i) {
-    let count = 0;
-    for (let j = 0; j < passwords.length; ++j) {
-        if (i !== j) {
-            if (passwords[i] === passwords[j]) {
-                count += 1;
-            }
+const text = fs.readFileSync(path.join(dirName(import.meta.url), 'passwords.txt')).toString();
+const arr = text.split('\n'); // ["fee pasw", "sdw pasw"]
+const passwords = arr.map((x) => x.split(" ")[1]); // ["fee", "pasw"]
+
+const objPasswords = getCountOfEachElement(passwords);
+const sortedPasswords = _.toPairs(objPasswords).sort((a, b) => b[1] - a[1]);
+
+const top3 = sortedPasswords.slice(0, 3).map((x) => x[0]);
+console.log(top3);
+
+function getCountOfEachElement(array) {
+    const result = {};
+    for (let i = 0; i < array.length; ++i) {
+        if (array[i] in result) {
+            ++result[array[i]];
+        } else {
+            result[array[i]] = 1;
         }
     }
-    if (count >= maxCount && !arrayPopular.includes(passwords[i])) {
-        arrayPopular.push(passwords[i]);
-    }
+    return result;
 }
-console.log(arrayPopular);

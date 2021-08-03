@@ -4,31 +4,37 @@ import readlineSync from "readline-sync";
 const str1 = readlineSync.question("Введите слово:\n> ");
 const str2 = readlineSync.question("Введите слово:\n> ");
 
-function findContaininggsInStringsAndLog(min, max) {
-    if (findMinAndMax() !== "equal") {
-        let content = false;
-        let searchString = "";
-        for (let i = 0; i < min.length; ++i) {
-            for (let j = 0; j < max.length; ++j) {
-                if (min[i] === max[j]) {
-                    searchString += min[i];
-                }
-                if (searchString === min) {
-                    content = true;
-                    break;
-                }
+const { min, max, equal } = findMinAndMax(str1, str2);
+
+if (equal) {
+    console.log("строки равны");
+} else if (containsMinInMax(min, max)) {
+    console.log("меньшая по длине строка содержится в большей");
+} else {
+    console.log("меньшая по длине строка не содержится в большей");
+} 
+
+function containsMinInMax(min, max) {
+    let contains = false;
+    let searchString = "";
+    for (let i = 0; i < min.length; ++i) {
+        for (let j = 0; j < max.length; ++j) {
+            if (min[i] === max[j]) {
+                searchString += min[i];
+            }
+            if (searchString === min) {
+                contains = true;
+                break;
             }
         }
-        if (content) console.log("меньшая по длине строка содержится в большей");
-        else console.log("меньшая по длине строка содержится в большей");
-    } else console.log("строки равны");
+    }
+    return contains;
 }
 
-
 function findMinAndMax(str1, str2) {
-    let min;
-    let max;
-    if (str1 > str2) return { min: str2, max: str1 };
-    else if (str1 < str2) return { min: str1, max: str2 };
-    else return "equal";
+    return {
+        min: str1.length > str2.length ? str2 : str1,
+        max: str1.length > str2.length ? str1 : str2,
+        equal: str1.length > str2.length
+    };
 }
