@@ -2,7 +2,7 @@
 // через includes
 // через indexOf
 // через цикл без помощи includes и indexOf
-const readlineSync = require("readline-sync");
+import readlineSync from "readline-sync";
 
 let str1 = readlineSync.question("Введите слово:\n> ");
 let str2 = readlineSync.question("Введите слово:\n> ");

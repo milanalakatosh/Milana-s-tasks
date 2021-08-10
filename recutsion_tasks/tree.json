@@ -1,0 +1,97 @@
+{
+    "type": "folder",
+    "name": "root",
+    "children": [
+      {
+        "type": "folder",
+        "name": "fruits",
+        "children": [
+          {
+            "type": "file",
+            "name": "apple.jpeg",
+            "size": 100
+          },
+          {
+            "type": "file",
+            "name": "orange.jpeg",
+            "size": 150
+          },
+          {
+            "type": "file",
+            "name": "banana.jpeg",
+            "size": 1000
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "name": "people",
+        "children": [
+          {
+            "type": "folder",
+            "name": "friends",
+            "children": [
+              {
+                "type": "file",
+                "name": "Daria.jpeg",
+                "size": 900
+              },
+              {
+                "type": "file",
+                "name": "Zina.jpeg",
+                "size": 1080
+              },
+              {
+                "type": "file",
+                "name": "Pavel.jpeg",
+                "size": 20
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "Viktor.jpeg",
+            "size": 40
+          },
+          {
+            "type": "file",
+            "name": "Fedya.jpeg",
+            "size": 100
+          },
+          {
+            "type": "file",
+            "name": "Liya.jpeg",
+            "size": 900
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "name": "phones",
+        "children": [
+          {
+            "type": "folder",
+            "name": "Android",
+            "children": [
+              {
+                "type": "file",
+                "name": "Samsung Galaxy S21.jpeg",
+                "size": 1690
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "name": "iOS",
+            "children": [
+              {
+                "type": "file",
+                "name": "iPhone XS.jpeg",
+                "size": 500
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
