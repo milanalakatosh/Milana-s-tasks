@@ -24,14 +24,12 @@ function findFileNameForUser(item) {
     if (item.type === "file") {
         if (item.name.includes(userSubstring)) {
             return item.name;
-        } else {
-            false;
-        }
+        } 
     } else {
         let result;
         for (const curItem of item.children) {
             result = findFileNameForUser(curItem);
-            if (result !== false && result !== undefined) {
+            if (result !== undefined) {
                 break;
             }
         }

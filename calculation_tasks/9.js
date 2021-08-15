@@ -2,57 +2,49 @@
 //Вывести yes, если такая дата существует (например, 12 02 1999 - yes, 22 13 2001 - no).
 import readlineSync from "readline-sync";
 
-let day = parseInt(readlineSync.question("Введите день\n> "));
-let month = parseInt(readlineSync.question("Введите месяц\n> "));
-let year = parseInt(readlineSync.question("Введите год\n> "));
+const day = parseInt(readlineSync.question("Введите день\n> "));
+const month = parseInt(readlineSync.question("Введите месяц\n> "));
+const year = parseInt(readlineSync.question("Введите год\n> "));
 
-checkDataExistence()
+checkDateExistence(day, month, year);
 
-function checkDataExistence() {
-    checkMonthExistence()
-    checkLeapYear()
-    checkDayExistence()
-    if (checkDayExistence() && checkMonthExistence(month)) {
+function checkDateExistence(day, month, year) {
+    if (doesDayExist(day, month, year) && doesMonthExist(month)) {
         console.log("yes");
     } else {
         console.log("no");
     }
 }
 
-function checkMonthExistence(x) {
-    return x > 0 && x < 13;
+function doesMonthExist(month) {
+    return month > 0 && month < 13;
 }
 
-function checkLeapYear() {
-    if (checkMonthExistence(month)) {
-        let leapYear = false;
-        if (year % 400 === 0) {
-            leapYear = true;
-        } else if (year % 100 === 0) {
-            leapYear = false;
-        } else if (year % 4 === 0) {
-            leapYear = true;
-        }
-        return leapYear;
-    }
+function isLeapYear(year) {
+    if (year % 400 === 0) {
+        return true;
+    } else if (year % 100 === 0) {
+        return false;
+    } else if (year % 4 === 0) {
+        return true;
+    } 
+    return false;
 }
 
-function checkDayExistence() {
-    let dayExists = false;
+function doesDayExist(day, month, year) {
     if (month % 2 === 0) {
         if (month === 2) {
-            if (checkLeapYear()) {
-                dayExists = day >= 1 && day <= 29;
+            if (isLeapYear(year)) {
+                return day >= 1 && day <= 29;
             } else {
-                dayExists = day >= 1 && day <= 28;
+                return day >= 1 && day <= 28;
             }
         } else {
-            dayExists = day >= 1 && day <= 30;
+            return day >= 1 && day <= 30;
         }
     } else {
-        dayExists = day >= 0 && day <= 31;
+        return day >= 0 && day <= 31;
     }
-    return dayExists;
 }
 
 

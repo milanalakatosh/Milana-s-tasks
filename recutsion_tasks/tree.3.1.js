@@ -1,16 +1,13 @@
-//Необходимо с помощью рекурсии найти:
-//Общий размер всех файлов
-//Самый большой и самый маленький файл
 //Имя первого файла, в котором содержится заданная пользователем подстрока
 //* Имена всех файлов, в которых содержится заданная пользователем подстрока
 import * as fs from 'fs';
 import path from 'path';
 import { dirName } from "../utils.js";
-import _ from "lodash";
-//import * as readlileSync from "readline-sync";
+import * as readlileSync from "readline-sync";
+import _ from 'lodash';
 
 const tree = JSON.parse(fs.readFileSync(path.join(dirName(import.meta.url), "tree.json")));
-
+const userSubstring = readlileSync.question("Введите подстроку для поиска?\n> ");
 //   {
 //     "type": "folder",
 //     "name": "iOS",
@@ -23,9 +20,14 @@ const tree = JSON.parse(fs.readFileSync(path.join(dirName(import.meta.url), "tre
 //     ]
 //   }
 
-const findSumOfSize = item => 
-    item.type === "file"
-        ? item.size
-        : _.sumBy(item.children, curItem => findSumOfSize(curItem));
-
-console.log(findSumOfSize(tree));
+// userSubstring - аргумент
+function findFileNameForUser(item, subStr) {
+    if (item.type === "file") {
+        return item.name.includes(subStr) ? [item.name] : [];
+    } else {
+        // [["a", "b"], ["c"]] -> ["a", "b", "c"]
+        // string[][]
+        return item.children.map(name => findFileNameForUser(name, subStr)).flat();
+    }
+}
+console.log(findFileNameForUser(tree, userSubstring));

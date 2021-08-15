@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>To-do-List</title>
+    </head>
+
+    <body>
+        <h1>Список дел</h1>
+        <form action="#">
+            <p>
+                <input name="search" placeholder="Поиск" />
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name=todo />
+                    <input name="addtodo" placeholder="Добавить дело" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    <ol>
+                        <input type="checkbox" name=list />
+                        <li>Посмотреть ТВ <!--emoji--></li>
+                        <!--<input type="checkbox" name=list placeholder=&#10006 color="red" />-->
+                        <li>Покормить кота</li>
+                        <li>Поиграть в компьютер</li>
+                    </ol>
+                </label>
+            </p>
+            <p>2 дела осталось</p>
+            <p>
+                <label><input type="radio" name="status" value="all" /> Все</label>
+                <label><input type="radio" name="status" value="active" /> Активные</label>
+                <label><input type="radio" name="status" value="completed" /> Завершенные</label>
+            </p>
+            <p>
+                <input type="submit" value="Удалить завершенные" />
+            </p>
+        </form>
+    </body>
+
+
+</html>

@@ -6,13 +6,8 @@ const str2 = readlineSync.question("Введите слово:\n> ");
 
 const { min, max, equal } = findMinAndMax(str1, str2);
 
-if (equal) {
-    console.log("строки равны");
-} else if (containsMinInMax(min, max)) {
-    console.log("меньшая по длине строка содержится в большей");
-} else {
-    console.log("меньшая по длине строка не содержится в большей");
-} 
+console.log(equal ? "строки равны" : containsMinInMax(min, max) ? 
+    "меньшая по длине строка содержится в большей" : "меньшая по длине строка не содержится в большей");
 
 function containsMinInMax(min, max) {
     let contains = false;
@@ -35,6 +30,6 @@ function findMinAndMax(str1, str2) {
     return {
         min: str1.length > str2.length ? str2 : str1,
         max: str1.length > str2.length ? str1 : str2,
-        equal: str1.length > str2.length
+        equal: str1.length === str2.length
     };
 }

@@ -12,15 +12,8 @@ function findMaxSize(item) {
     if (item.type === "file") {
         return item.size;
     } else {
-        let max = -1;
-        for (const curItem of item.children) {
-            let compareWithMax = findMaxSize(curItem);
-            if (compareWithMax > max) {
-                max = compareWithMax;
-            }
-        }
-        return max;
-        //return _.maxBy(item.children, curItem => findMaxSize(curItem));
+        const sizes = item.children.map(child => findMaxSize(child));
+        return _.max(sizes);
     }
 }
 console.log(findMaxSize(tree));
@@ -29,15 +22,8 @@ function findMinSize(item) {
     if (item.type === "file") {
         return item.size;
     } else {
-        let min = Number.POSITIVE_INFINITY;
-        for (const curItem of item.children) {
-            let compareWithMin = findMinSize(curItem);
-            if (compareWithMin < min) {
-                min = compareWithMin;
-            }
-        }
-        return min;
-        //return _.minBy(item.children, curItem => findMinSize(curItem));
+        const sizes = item.children.map(child => findMinSize(child));
+        return _.min(sizes);
     }
-}
+}     
 console.log(findMinSize(tree));
