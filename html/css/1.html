@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: aqua;
+        }
+
+        .middle {
+            flex: 1;
+            border: 1px solid black;
+            display: flex;
+        }
+
+        .navigation {}
+
+        .nav-item {
+            color: red;
+        }
+
+        .content {
+            flex: 1;
+            background-color: rebeccapurple;
+        }
+    </style>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header class="header">шапка</header>
+    <div class="middle">
+        <nav class="navigation">
+            <a href="#" class="nav-item">1</a>
+            <a href="#" class="nav-item">2</a>
+            <a href="#" class="nav-item">3</a>
+        </nav>
+        <main class="content">content</main>
+    </div>
+    <footer class="footer">футер</footer>
+</body>
+</html>  

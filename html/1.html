@@ -1,39 +1,42 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>To-do-List</title>
-    </head>
 
-    <body>
-        <h1>Список дел</h1>
-        <form action="#">
-            <p>
-                <input name="search" placeholder="Поиск" />
-            </p>
-            <p>
-                <label>
-                    <input type="checkbox" name=todo />
-                    <input name="addtodo" placeholder="Добавить дело" />
-                </label>
-            </p>
-            <p>
-                <label> <!--Тут наверно бессмысленен это label-->
-                    <ul>
-                        <li> <input type="checkbox"/> 1. Посмотреть ТВ ❌</li>
-                        <li><input type="checkbox"/> 2. Покормить кота ❌</li>
-                        <li><input type="checkbox"/> 3. Поиграть в компьютер ❌</li>
-                    </ul>
-                </label>
-            </p>
-            <p>2 дела осталось</p>
-            <p>
-                <label><input type="radio" name="status" value="all" /> Все</label>
-                <label><input type="radio" name="status" value="active" /> Активные</label>
-                <label><input type="radio" name="status" value="completed" /> Завершенные</label>
-            </p>
-            <p>
-                <input type="submit" value="Удалить завершенные" />
-            </p>
-        </form>
-    </body>
+<head>
+    <title>To-do-List</title>
+    <link href="/Users/Istvan/Documents/GitHub/Milana-s-tasks/html/1.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h1>Список дел</h1>
+    <div>
+        <input id="search" name="search" placeholder="Поиск" />
+    </div>
+    <div>
+        <input type="checkbox" name=todo />
+        <input name="addtodo" placeholder="Добавить дело" />
+    </div>
+    <div>
+        <ul>
+            <li class="interaction" ><label><input type="checkbox" /> 1. Посмотреть ТВ</label>
+                <button class ="delete">❌</button>
+            </li>
+            <li class="interaction"><label><input type="checkbox" /> 2. Покормить кота</label>
+                <button class ="delete">❌</button>
+            </li>
+            <li class="interaction"><label><input  type="checkbox" /> 3. Поиграть в компьютер</label>
+                <button class ="delete">❌</button>
+            </li>
+        </ul>
+    </div>
+    <div class="page-button">
+        <div>2 дела осталось</div>
+        <div>
+            <label><input type="radio" name="status" value="all" /> Все</label>
+            <label><input type="radio" name="status" value="active" /> Активные</label>
+            <label><input type="radio" name="status" value="completed" /> Завершенные</label>
+        </div>
+        <div><button class="action">Удалить завершенные</button></div>
+    </div>
+</body>
+
 </html>
