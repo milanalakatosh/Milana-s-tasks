@@ -3,15 +3,19 @@ h1 {
     font-size: 20px;
 }
 #search {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+.toolbar {
     display: flex;
-    width: 99%;
-   
+}
+.addtodo {
+    flex: 1;
 }
 .interaction {
    display:flex;
    justify-content: space-between;
-    /*margin-left: 87pc;*/
-    /*text-align: left;*/
 }
 .delete {
     border: none;
@@ -26,7 +30,5 @@ ul {
 }
 .page-button {
     display: flex;
-    align-items: stretch;
-    flex-direction: row;
     justify-content: space-between;
 }

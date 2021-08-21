@@ -8,22 +8,23 @@
 
 <body>
     <h1>Список дел</h1>
-    <div>
-        <input id="search" name="search" placeholder="Поиск" />
-    </div>
-    <div>
+    <input id="search" name="search" placeholder="Поиск" />
+    <div class="toolbar">
         <input type="checkbox" name=todo />
-        <input name="addtodo" placeholder="Добавить дело" />
+        <input class="addtodo" name="addtodo" placeholder="Добавить дело" />
     </div>
     <div>
         <ul>
-            <li class="interaction" ><label><input type="checkbox" /> 1. Посмотреть ТВ</label>
+            <li class="interaction">
+                <label><input type="checkbox" /> 1. Посмотреть ТВ</label>
                 <button class ="delete">❌</button>
             </li>
-            <li class="interaction"><label><input type="checkbox" /> 2. Покормить кота</label>
+            <li class="interaction">
+                <label><input type="checkbox" /> 2. Покормить кота</label>
                 <button class ="delete">❌</button>
             </li>
-            <li class="interaction"><label><input  type="checkbox" /> 3. Поиграть в компьютер</label>
+            <li class="interaction">
+                <label><input  type="checkbox" /> 3. Поиграть в компьютер</label>
                 <button class ="delete">❌</button>
             </li>
         </ul>
