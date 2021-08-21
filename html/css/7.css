@@ -1,0 +1,21 @@
+body {
+    background-color:turquoise;
+}
+p { 
+    overflow-x: scroll; /* прокрутка по горизонтали */
+    overflow-y: scroll; /* прокрутка по вертикали */
+    width: 350px; 
+    height: 150px; /* Высота блока */
+    padding: 5px; /* Поля вокруг текста */
+    border-top-color: darkgreen;
+    border-top-style: double;
+    border-bottom-color: darkgreen;
+    border-top-style: double;
+    background-color: peachpuff;
+}
+.text {
+    color:peru;
+}
+.text::-webkit-scrollbar {
+    width: 20px;
+}
