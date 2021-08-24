@@ -1,0 +1,39 @@
+html, body {
+    height: 100%;
+}
+h3 {
+    margin-left: 10px;
+}
+.arial {
+    font-family:'Courier New', Courier, monospace;
+    font-size: small;
+    border: 1px solid grey;
+    box-shadow: 1px 3 px 5px 3px grey;
+    background-color: #e5e1e1;
+    border-radius: 3%;
+    margin: 20px 10px 20px 10px;
+    padding: 10px;
+}
+.arial_scroll {
+    font-family:'Courier New', Courier, monospace;
+    font-size: small;
+    border: 1px solid grey;
+    box-shadow: grey;
+    background-color: #e5e1e1;
+    margin: 20px 10px 20px 10px;
+    padding: 10px;
+    overflow: scroll;
+}
+.text {
+    margin: 10px;
+}
+.bold {
+    font-weight: bold;
+}
+.green {
+    color:green;
+}
+.italic {
+    font-style: italic;
+    opacity: 0.6;
+}

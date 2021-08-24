@@ -1,18 +1,32 @@
-body {
-    background-color:turquoise;
+html {
+    height: 100%;
 }
-p {
-    overflow-x: scroll; /* прокрутка по горизонтали */
-    overflow-y: scroll; /* прокрутка по вертикали */
-    width: 350px; 
-    height: 150px; /* Высота блока */
-    padding: 5px; /* Поля вокруг текста */
-    border-top-color: darkgreen;
-    border-top-style: double;
-    border-bottom-color: darkgreen;
-    border-top-style: double;
-    background-color: peachpuff;
+body {
+    height: 100%;
+    background-color:turquoise;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+p {  
 }
 .text {
+    text-indent: 20px;
+    text-align: justify;
     color:peru;
+    /* white-space: nowrap; */
+    overflow: scroll; 
+    width: 350px; 
+    height: 150px; 
+    padding: 20px;
+    margin: 50px;
+    border-style: double hidden;
+    border-color: darkgreen;
+    background-color:wheat;
+    /* outline: 10px solid white; */
 }
+/* .text:last-child {
+    overflow-x: scroll; /* прокрутка по горизонтали */
+    
