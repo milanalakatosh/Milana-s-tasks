@@ -6,23 +6,32 @@ body {
     justify-content: center;
     align-items: center;
 }
-.item_list {
+.menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items:center;
     overflow: scroll;
-    background-color: lightgray;
-    max-width: 30%;
+    /* max-width: 30%; */
     text-align: justify;
+    /* width: 248px; */
 }
 .item {
     font-size: 20px;
-    text-align: justify;
-    color: darkblue;
     font-weight: 700;
-    padding: 5px;
-    border: 1px lightgray;
-    margin: 10px;
-   
+    text-align: justify;
+    color: #4C688B;
+    background-color: white;
+    font-weight: 700;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-top: 1px solid #F2F2F2;
+    border-bottom: 1px solid #F2F2F2;
+    border-left: 12px solid #F2F2F2;
+    border-right: 12px solid #F2F2F2;
+    text-decoration: none;
+}
+.item:hover {
+    background-color: #4F76B5;
+    color: #ffffff;
 }

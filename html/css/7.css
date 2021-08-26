@@ -3,7 +3,7 @@ html {
 }
 body {
     height: 100%;
-    background-color:turquoise;
+    background-color:#3B898A;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,16 +15,16 @@ p {
 .text {
     text-indent: 20px;
     text-align: justify;
-    color:peru;
+    color:#D18F5E;
     /* white-space: nowrap; */
     overflow: scroll; 
-    width: 350px; 
-    height: 150px; 
+    width: 440px; 
+    height: 90px; 
     padding: 20px;
-    margin: 50px;
+    margin: 30px;
     border-style: double hidden;
-    border-color: darkgreen;
-    background-color:wheat;
+    border-color: #377D22;
+    background-color:#F5F5DE;
     /* outline: 10px solid white; */
 }
 /* .text:last-child {
