@@ -1,0 +1,52 @@
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin-top: 20px;
+}
+.leftSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-right: 30px;
+}
+.rightSide {
+    width: 135px;
+    height: 90px; 
+    border: 1px dotted red;
+    border-radius: 7px;
+    padding: 10px;
+    /* height: min-content; */
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}
+.header {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.red {
+    color:red;
+    font-weight: 700;
+}
+.text {
+    font-size: 28px;
+    white-space: nowrap;
+}
+.number {
+    font-size: 50px;
+}
+.box {
+    
+}
+img {
+    margin-right: 10px;
+}

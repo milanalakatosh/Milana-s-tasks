@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+
+.logo :first-letter {
+    color: red;
+    font-size: 50px;
+}

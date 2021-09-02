@@ -9,17 +9,12 @@ body {
 .menu {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items:center;
-    overflow: scroll;
-    /* max-width: 30%; */
-    text-align: justify;
-    /* width: 248px; */
+    flex: 0.3;
 }
 .item {
     font-size: 20px;
     font-weight: 700;
-    text-align: justify;
+    text-align: center;
     color: #4C688B;
     background-color: white;
     font-weight: 700;

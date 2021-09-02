@@ -1,10 +1,9 @@
-html body {
+html, body {
     height: 100%;
 }
 body {
     display: flex;
     background-image: url(./10.png);
-    justify-content: space-between;
     
 }
 .left_side {
@@ -14,9 +13,10 @@ body {
     align-items: center;
 }
 .right_side {
-    overflow: scroll;
+    overflow: auto;
     flex: 5;
     margin-left: 5px;
+    padding-left: 10px;;
     margin-right: 40px;
 }
 p {
@@ -28,9 +28,6 @@ p {
     background: white;
     border: 1px solid black;
     margin: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .textinfix {
     text-indent: 3px;

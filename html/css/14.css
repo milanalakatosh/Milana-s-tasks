@@ -1,0 +1,25 @@
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #98BA93;
+}
+.circle {
+    border-radius: 50%;
+}
+.big {
+    background-color: #F3A83B;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.small {
+    background-color: black;
+    width: 150px;   /* почему нельзя задать макс width i height */
+    height: 150px;
+}
