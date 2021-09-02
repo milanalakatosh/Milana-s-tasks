@@ -4,10 +4,10 @@ html, body {
 body {
     padding: 40px;
     display: flex;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
     background-color: #73CDDF;
-
 }
 .container {
     display: flex;
@@ -16,22 +16,22 @@ body {
 }
 .item {
     background-color: white;
+    margin-right: 10px;
+}
+.item:last-child {
+    margin-right: 0;
 }
 .one {
     flex: 6.25;
-    margin-right: 10px;
 }
 .two {
     flex: 12.5;
-    margin-right: 10px;
 }
 .three {
     flex: 25;
-    margin-right: 10px;
 }
 .four {
     flex: 50;
-    margin-right: 10px;
 }
 .five {
     flex: 100;
