@@ -2,10 +2,10 @@ html, body {
     height: 100%;
 }
 body {
+    margin: 0;
     display: flex;
     justify-content: center;
-    background-color: url(./15.jpg); /* почему не работает */
-    padding: 100px;
+    background: url(./15.jpg); /* почему не работает */
 }
 .container {
     display: flex;
@@ -15,19 +15,19 @@ body {
 .diamond {
     transform: rotate(45deg);
     border-radius: 5px;
-    margin-right: 50px;
 }
 
 .one {
     width: 100px;
     height: 100px;
     background-color: #001EF5;
+    margin-right: 38px;
 }
 .two {
     width: 75px;
     height: 75px;
     background-color: #377D22;
-    margin-right: 40px;
+    margin-right: 28px;
 }
 .three {
     width: 50px;

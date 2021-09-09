@@ -14,9 +14,16 @@ div {
     border-radius: 5px;
     box-shadow: 10px 10px 2px 0px #75140C;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 p {
     font-size: 20px;
+    text-align: justify;
+    flex: 1;
 }
+p::after {
+    content: '';
+    display:inline-block;
+    width: 100%;
+  }

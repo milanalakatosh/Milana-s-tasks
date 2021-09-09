@@ -2,12 +2,14 @@ html, body {
     height: 100%;
 }
 body {
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 a {
     text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
     color: black;
     font-size: 40px;
     border: 1px solid lightgray;
@@ -15,9 +17,20 @@ a {
     border-radius: 5px;
     margin-top: 10px;
 }
+.logo {
+}
 
-
-.logo :first-letter {
+.logo::first-letter {
     color: red;
     font-size: 50px;
+}
+.number {
+    color: #78797E;
+    width: 30px;
+    height: 35px;
+    font-size: 20px;
+    background-color: lightgray;
+    border: 1px solid #78797E;
+    border-radius: 20%;
+    margin-left: -10px;
 }

@@ -27,6 +27,7 @@ body {
     font-weight: 700;
     font-size: 24px;
     text-align: center;
+
 }
 .header {
     font-size: 24px;
@@ -40,13 +41,19 @@ body {
 .text {
     font-size: 28px;
     white-space: nowrap;
+    vertical-align: middle;
 }
 .number {
     font-size: 50px;
+    text-align: justify;
 }
-.box {
-    
+.number::after {
+    content: '';
+    display:inline-block;
+    width: 100%;
 }
+
 img {
-    margin-right: 10px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
