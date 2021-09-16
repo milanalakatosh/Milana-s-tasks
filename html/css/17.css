@@ -4,56 +4,65 @@ html, body {
 body {
     display: flex;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .container {
     display: flex;
     justify-content: space-between;
-    width: auto;
-    margin-top: 20px;
+    width: 545px;
+    height: 138px;
+    margin-top: 12px;
+    padding: 8px 7px;
+    box-sizing: border-box;
 }
 .leftSide {
     display: flex;
     flex-direction: column;
     justify-content: left;
     margin-right: 30px;
+    flex: 1;
+    width: 0;
+    padding: 7px 17px;
 }
 .rightSide {
-    width: 135px;
-    height: 90px; 
-    border: 1px dotted red;
+    width: 137px;
+    height: 93px; 
+    border: 1px dashed red;
     border-radius: 7px;
-    padding: 10px;
-    /* height: min-content; */
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 
 }
 .header {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 17px;
 }
 .red {
     color:red;
     font-weight: 700;
 }
 .text {
-    font-size: 28px;
+    font-size: 22px;
     white-space: nowrap;
     vertical-align: middle;
 }
 .number {
-    font-size: 50px;
-    text-align: justify;
+    font-size: 44px;
+    letter-spacing: 7px;
 }
-.number::after {
-    content: '';
-    display:inline-block;
-    width: 100%;
-}
-
-img {
-    margin-right: 5px;
+.alarm {
+    display: inline-block;
+    background: url(./17.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 16px;
     vertical-align: middle;
+    width: 37px;
+    height: 37px;
 }

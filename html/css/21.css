@@ -1,0 +1,47 @@
+.body {
+    display: flex;
+    justify-content: center;
+    
+}
+.container {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    border: 0px 1px;
+    border-color: #F29C42;
+}
+.header {
+    height: 30px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding-top: 3px;
+}
+.header_main {
+    background-color: #FBF8E6;
+    
+}
+.header_column {
+    color: white;
+    background-color: #F29C42;
+    border: 1px solid #FBF8E6;
+}
+.lecture {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    border: 0px 0px 1px 0px;
+    border-color: #F29C42;
+}
+.left {
+    box-sizing: border-box;
+    width: 147px;
+}
+.middle {
+    width: 490px
+}
+a {
+    font-weight: bold;
+    color: #478FC4;
+}
