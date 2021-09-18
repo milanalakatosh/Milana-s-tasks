@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu {
+    width: 715px;
+    height: 46px;
+    background-color: orange;
+}
+main {
+    
+    
+    position: relative;
+}
+.main-content {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 55px;
+    top:20px
+}
+.subject {
+    height: 39px;
+    width: 121px;
+    border-bottom: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+.math {
+    background-color: red;
+}
+.physics {
+    background-color: purple;
+}
+.chemistry {
+    background-color: lightskyblue;
+}
+.history {
+    background-color: lightgreen;
+}

@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 715px;
+    border: 1px solid #A77283;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.form {
+    width: 238px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DC3857;
+}
+.form-header {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+}
+.links {
+    font-size: 18px;
+    margin: 19px 24px;
+}
+a {
+    color: #3576B0;
+    margin-right: 10px;
+    white-space: nowrap;
+    line-height: 25px;
+}
