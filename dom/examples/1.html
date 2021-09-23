@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Examples</title>
+</head>
+
+<body>
+
+    <button onclick="alert('привет!')">Нажми на меня 1</button>
+    <button id="button-2">Нажми на меня 2</button>
+    <button class="button-3">Нажми на меня 3</button>
+    <div class="button-4"><button>Нажми на меня 4</button></div>
+
+    <script>
+        const button2 = document.getElementById('button-2');
+        button2.onclick = () => alert('привет');
+        button2.onclick = () => alert('Артём');
+
+        const button3 = document.querySelector('.button-3');
+        button3.addEventListener('click', () => alert('привет'));
+        button3.addEventListener('click', () => alert('Артём'));
+
+        const button4 = document.querySelector('.button-4>button');
+        button4.addEventListener('click', () => alert('привет'));
+        button4.addEventListener('click', () => alert('Артём'));
+
+        const buttons = document.querySelectorAll('button');
+        for (const button of buttons) {
+            button.addEventListener('mouseover', (e) => alert(e.target.textContent));
+        }
+    </script>
+
+</body>
+
+</html>
