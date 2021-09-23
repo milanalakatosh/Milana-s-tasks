@@ -41,7 +41,7 @@ h1 {
 .bold {
     font-weight: 700;
 }
-.square-link {
+.square-links {
     display: flex;
     flex-direction: row;
 }
@@ -61,11 +61,14 @@ h1 {
     flex-direction: row;
     margin-top: 10px;
 }
+:root {
+    --image-width: 290px;
+}
 .image {
     background-image: url(./22.png);
     background-repeat:  no-repeat;
     background-size: contain;
-    width: 327px;
+    width: var(--image-width);
     height: 195px;
 }
 .text {
@@ -73,21 +76,20 @@ h1 {
     letter-spacing: -1px;
     font-size: 12px;
     margin-top: 10px;
+    flex: 1;
+    width: 0;
 }
 .appeal {
     margin-bottom: 20px;
 }
-.read {
-    display: flex;
-    justify-content: center;
-}
 .content {
     line-height: 20px;
 }
-.read-link {
+.read {
     color: #546E9C;
     font-style: italic;
     font-weight: 700;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
+    margin-left: var(--image-width);;
 }

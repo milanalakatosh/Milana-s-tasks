@@ -37,7 +37,6 @@ a {
     position: relative;
 }
 .table-header {
-    box-sizing: border-box;
     margin: 33px 0px 0px 28px;
     padding: 5px 0px 0px 20px;
     width: 368px;
@@ -47,16 +46,17 @@ a {
     display: flex;
     align-content: center;
 }
-.table-header::after {
+.table::after {
     content: '';
     height: 10px;
-    background-color: #4F76B5;
-    width: 320px;
     display: block;
     position: absolute;
     top:50%;
+}
+.table-header::after {
+    background-color: #4F76B5;
+    width: 320px;
     left: 365px; 
-
 }
 .table-list {
     padding: 7px 10px 0px 10px;
@@ -67,13 +67,8 @@ a {
     margin: 67px 0px 0px 127px;
 }
 .table-list::after {
-    content: '';
-    height: 10px;
     background-color: #C6291C;
     width: 175px;
-    display: block;
-    position: absolute;
-    top:50%;
     left: 412px; 
 }
 /* .line {

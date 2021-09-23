@@ -14,29 +14,44 @@ body {
     border-right: 1px solid #E8D7A8;
     padding: 17px;
 }
-.header {
+.header-mixin {
     font-weight: bold;
     box-sizing: border-box;
     padding: 3px;
     height: 31px;
 }
-.header-main {
+.page-header {
     background-color: #FBF8E6;
     border-top: 1px solid #E8D7A8;
     padding-top: 7px;
+    position: relative;
 }
-.header-column {
+.page-header::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.table-header {
     color: white;
     background-color: #F29C42;
     border-top: 2px solid #E8D7A8;
     display: flex;
     flex-direction: row;
 }
-.header-2 {
-    padding-left: 91px;
+:root {
+    --first-column-width: 147px;
+    --second-column-width: 490px;
 }
-.header-3 {
-    padding-left: 410px;
+.table-header-cell-left {
+    width: var(--first-column-width);
+}
+.table-header-cell-middle {
+    width: var(--second-column-width);
 }
 .lecture {
     display: flex;
@@ -44,16 +59,16 @@ body {
     border-top: 1px solid #E8D7A8;
     padding: 5px;
 }
-.left {
+.cell-left {
     box-sizing: border-box;
-    width: 147px;
+    width: var(--first-column-width);
 }
 .weight {
     margin-top: 7px;
     font-weight: 700;
 }
-.middle {
-    width: 490px;
+.cell-middle {
+    width: var(--second-column-width);
     padding-right: 5px;
     line-height: 1.5;
 }

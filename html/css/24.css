@@ -2,46 +2,68 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .menu {
-    width: 715px;
-    height: 46px;
-    background-color: orange;
-}
-main {
-    
-    
-    position: relative;
-}
-.main-content {
+    width: 900px;
+    height: 50px;
+    background-color: #444444;
     color: white;
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    right: 55px;
-    top:20px
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    position: relative;
+    
 }
-.subject {
-    height: 39px;
-    width: 121px;
-    border-bottom: 1px solid white;
+.menu-content {
+    box-sizing: border-box;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.main { 
+    background-color: #EF8A34;
+    width: 197px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    color: white;
+}
+.subjects {
+    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 71px;
 }
 a {
     color: white;
     text-decoration: none;
 }
+.subject {
+    height: 48px;
+    width: 153px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .math {
     background-color: red;
 }
 .physics {
-    background-color: purple;
+    background-color: #992DF5;
 }
 .chemistry {
-    background-color: lightskyblue;
+    background-color: #61A6ED;
+    
 }
 .history {
-    background-color: lightgreen;
+    background-color: #6ECC6C;
+}
+.orange {
+    width: 900px;
+    height: 9px;
+    background-color: EF8A34;
 }
