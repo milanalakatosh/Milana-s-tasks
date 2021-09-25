@@ -1,5 +1,8 @@
-const button = document.getElementById('button');
-const input= document.getElementById("input")[0];
-const pow = Math.pow(Number(input.value), 2);
+const button = document.getElementsByClassName('button')[0];
 
-button.addEventListener('click', () => alert(pow));
+button.addEventListener('click', () => {
+    const input = document.getElementsByClassName("input")[0];
+    const pow = Math.pow(Number(input.value), 2);
+    alert(pow);
+});
+
