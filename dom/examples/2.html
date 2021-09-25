@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Examples</title>
+</head>
+
+<body>
+    <button class="button">Нажми на меня</button>
+    <input class="input" value="???">
+    <script>
+        const button = document.querySelector('.button');
+        const input = document.getElementsByClassName("input")[0];
+        button.addEventListener('click', () => input.value = "!!!");
+    </script>
+</body>
+</html>
