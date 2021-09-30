@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <input id="input" onclick="this.value = 'Ой, я поменял текст!'" value="Нажми на меня!">
+        <script>
+            const body = document.querySelector("body");
+            const input = document.getElementById("input");
+            body.addEventListener("click", () => input.value = 'Ой, а теперь еще раз поменял текст!');
+        </script>
+    </body>
+</html>
