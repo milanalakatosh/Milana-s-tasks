@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            input {
+                width: 300px; 
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input" type="submit" value="Нажми на меня!"><br>
+        <script>
+            const input = document.getElementById("input");
+            const body = document.querySelector("body");
+            const input2 = document.createElement("input");
+            input2.type="submit";
+            input2.value="Нажми, чтобы отблокировать элемент";
+       
+            input.addEventListener("click", () => {
+                input.disabled="disabled";
+                input.value="Все! На меня больше не нажать!"
+                body.appendChild(input2);
+                input2.style.visibility="visible";
+            });
+            input2.addEventListener("click", () => {
+                input.removeAttribute("disabled");
+                input.value="Ооо на меня снова можно нажимать!"
+                input2.style.visibility="hidden";
+            });
+        </script>
+    </body>
+</html>

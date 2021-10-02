@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id="input" value="Ку-ку">
+        <button id="button1">Нажми на меня!</button>
+        <button id="button2">Нажми потом на меня!</button>
+        <script>
+            const button1 = document.getElementById("button1");
+            const button2 = document.getElementById("button2");
+            const input = document.getElementById("input");
+            button1.addEventListener("click", () => input.style.display = 'none');
+            button2.addEventListener("click", () => input.style.display="inline");// любой параметр в принципе могу указать
+        </script>
+    </body>
+</html>

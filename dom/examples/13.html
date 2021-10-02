@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #image {
+                width: 150px;
+                height: 120px;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="image" src="7.7.1.jpg"><br>
+        <script>
+            const image = document.getElementById("image");
+            image.addEventListener("mouseover", () => image.src="7.7.2.jpg");
+            image.addEventListener("mouseout", () => image.src="7.7.1.jpg");
+        </script>
+    </body>
+</html>

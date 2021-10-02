@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id="input" value="Ку-ку"><br>
+        <button id="button" style="margin-top: 20px;">Нажми на меня!</button>
+        <script>
+            const button = document.getElementById("button");
+            const input = document.getElementById("input");
+            button.addEventListener("click", () => {
+                input.value = "Ой, я поменял свой текст и css!"
+                input.style.width='300px';
+                input.style.height='57px';
+                input.style.color='red';
+                input.style.borderRadius='10px'
+            });
+        </script>
+    </body>
+</html>

@@ -1,5 +1,5 @@
 <!-- http://www.itmathrepetitor.ru/zadachi-po-html-i-css-shkolnye-predmety/ -->
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
     <head>
         <link href="./reset.css"/>
@@ -8,13 +8,25 @@
     <body>
         <div class = "container">
             <div class="menu">
-                <div class="content main-active"><a href="#">Главная</a></div>
-                <div class="content math"><a href="#">Математика</a></div>
-                <div class="content physics"><a href="#">Физика</a></div>
-                <div class="content chemistry"><a href="#">Химия</a></div>
-                <div class="content history"><a href="#">История</a></div>
+                <a class="item" data-status="active" data-item="main" href="#">Главная</a>
+                <a class="item" data-status="normal" data-item="math" href="#">Математика</a>
+                <a class="item" data-status="normal" data-item="physics" href="#">Физика</a>
+                <a class="item" data-status="normal" data-item="chemistry" href="#">Химия</a>
+                <a class="item" data-status="normal" data-item="history" href="#">История</a>
                 </div>       
-            <div class="orange"></div>
+            <div class="line" data-item="main"></div>
         </div>
+        <script>
+            const items = document.getElementsByClassName("item");
+            for (const item of items) {
+                item.addEventListener("click", () => {
+                    const itemActive = document.querySelector("[data-status='active']");
+                    itemActive.dataset.status="normal";
+                    item.dataset.status="active";
+                    const line = document.querySelector(".line");
+                    line.dataset.item = item.dataset.item;
+                });
+            }
+        </script>
     </body>
 </html>

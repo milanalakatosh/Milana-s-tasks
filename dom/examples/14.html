@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id="input" value="Ку-ку">
+        <button id="button">Нажми на меня!</button>
+        <script>
+            const button = document.getElementById("button");
+            const input = document.getElementById("input");
+            button.addEventListener("click", () => {
+                input.style.color="red";
+                input.style.width="300px";
+            });
+        </script>
+    </body>
+</html>

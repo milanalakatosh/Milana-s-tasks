@@ -19,36 +19,38 @@ body {
     display: flex;
     flex-direction: row;
 }
-.main-active { 
-    background-color: #EF8A34;
-    width: 197px;
-    height: 50px;
-    color: white;
-}
+
 a {
     color: white;
     text-decoration: none;
 }
-.content {
+.item {
     width: 153px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.math {
+[data-item="main"] {
+    background-color: #EF8A34;
+}
+[data-item="math"] {
     background-color: red;
 }
-.physics {
+[data-item="physics"] {
     background-color: #992DF5;
 }
-.chemistry {
+[data-item="chemistry"] {
     background-color: #61A6ED;
 }
-.history {
+[data-item="history"] {
     background-color: #6ECC6C;
 }
-.orange {
+[data-status="active"] { 
+    width: 197px;
+    height: 50px;
+    cursor: default;
+}
+.line {
     margin-top: 2px;
     height: 8px;
-    background-color: #EF8A34;
 }

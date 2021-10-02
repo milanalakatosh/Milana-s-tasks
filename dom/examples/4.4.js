@@ -1,3 +1,3 @@
 const container = document.getElementById("container");
 
-container.addEventListener('mouseover', () => alert("Привет!"));
+container.addEventListener('mouseout', () => alert("Привет!"));

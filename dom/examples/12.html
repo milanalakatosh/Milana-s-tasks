@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #input {
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input" type="submit" value="Нажми на меня">
+    </body>
+    <script>
+        const input = document.querySelector("#input");
+        input.addEventListener("click", () => {
+            input.value = "Ой, теперь на меня больше не нажать!";
+            input.disabled="disabled";
+        });
+    </script>
+</html>
