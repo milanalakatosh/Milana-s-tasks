@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <input id="input1" value="Привет">
+        <input id="input2" value="Пока">
+        <button class="button">Нажми на меня!</button>
+        <script>
+            const input1 = document.querySelector("#input1");
+            const input2 = document.querySelector("#input2");
+            const button = document.querySelector(".button");
+            button.addEventListener("click", () => {
+                const saveInput1 = input1.value;
+                input1.value = input2.value;
+                input2.value = saveInput1;
+            });
+        </script>
+    </body>
+</html>

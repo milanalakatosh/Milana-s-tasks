@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .input {
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <input class="input"  value="Ку-ку">
+        <button class="push">Нажми на меня!</button>
+        <script>
+            const input = document.querySelector(".input");
+            const push = document.querySelector(".push");
+            push.addEventListener("click", () => {
+                input.style="float: right";
+                input.value="Теперь я плаваю справа";
+            });
+        </script>
+    </body>
+</html>

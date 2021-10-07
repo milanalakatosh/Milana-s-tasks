@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<body>
+    <head></head>
+    <body>
+        <button id="button">Нажми на меня!</button>
+        <script>
+            const button = document.querySelector("#button");
+            button.addEventListener("click", () => {
+                button.disabled="disabled";
+                button.style.cursor="not-allowed";
+            });
+        </script>
+    </body>
+</body>

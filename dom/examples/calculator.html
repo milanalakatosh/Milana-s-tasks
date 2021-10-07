@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input class="calc-screen">
+        <div class="row3">
+            <button class="calc-button">7</button>
+            <button class="calc-button">8</button>
+            <button class="calc-button">9</button>
+            <button class="calc-button">/</button>
+        </div>
+        <div class="row2">
+            <button class="calc-button">4</button>
+            <button class="calc-button">5</button>
+            <button class="calc-button">6</button>
+            <button class="calc-button">*</button>
+        </div>
+        <div class="row1">
+            <button class="calc-button">1</button>
+            <button class="calc-button">2</button>
+            <button class="calc-button">3</button>
+            <button class="calc-button">-</button>
+        </div>
+        <div class="row1">
+            <button class="calc-button" style="width: 52px;">0</button>
+            <button class="calc-button">.</button>
+            <button class="calc-button">+</button>
+        </div>
+        <button class="evaluate">Посчитать!</button>
+        <script src="./math-expression-evaluator.js"></script>
+        <script>
+            const input = document.querySelector(".calc-screen");
+            const buttons = document.querySelectorAll(".calc-button");
+            const evaluate = document.querySelector(".evaluate");
+            for (const button of buttons) {
+                button.addEventListener("click", () => input.value += button.textContent);
+            }
+            evaluate.addEventListener("click", () => input.value = mexp.eval(input.value));
+        </script>
+    </body>
+</html>
+

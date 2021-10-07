@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .input {
+                width: 208px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input1" class="input" placeholder="Введите число!">
+        <input id="input2" class="input" placeholder="Здесь появится результат" disabled>
+        <button class="button">Нажми на меня!</button>
+        <script>
+            const input1 = document.querySelector("#input1");
+            const input2 = document.querySelector("#input2");
+            const button = document.querySelector(".button");
+            button.addEventListener("click", () => {
+                input2.value = Math.pow(parseFloat(input1.value), 2);
+            });
+        </script>
+    </body>
+</html>
+<!-- почему в примере , если ничего не вводить , будет ноль, а у меня нАн -->

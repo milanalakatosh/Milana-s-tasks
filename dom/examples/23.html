@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .input {
+                width: 208px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input1" class="input" placeholder="Введите число!"><br>
+        <input id="input2" class="input" placeholder="Здесь появится результат" disabled><br>
+        <button class="button">Нажми на меня!</button>
+        <script>
+            const input1 = document.querySelector("#input1");
+            const input2 = document.querySelector("#input2");
+            const button = document.querySelector(".button");
+            button.addEventListener("click", () => {
+                if (isNaN(input1.value)) alert("Введено не число!");
+                else input2.value = Math.pow(input1.value, 2);
+            });
+        </script>
+    </body>
+</html>

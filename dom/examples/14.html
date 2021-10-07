@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <style>
+            .colored {
+                color: red;
+                width: 300px;
+            }
+        </style>
+    </head>
     <body>
         <input id="input" value="Ку-ку">
         <button id="button">Нажми на меня!</button>
@@ -8,8 +15,7 @@
             const button = document.getElementById("button");
             const input = document.getElementById("input");
             button.addEventListener("click", () => {
-                input.style.color="red";
-                input.style.width="300px";
+                input.classList.add("colored");
             });
         </script>
     </body>
