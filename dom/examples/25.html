@@ -24,10 +24,10 @@
             <input id="input">
             <div class="buttons">
                 <div class="math-signs">
-                    <button id="pluss" class="button">Я добавлю +</button><br>
-                    <button id="minus" class="button">Я добавлю -</button><br>
-                    <button id="divide" class="button">Я добавлю /</button><br>
-                    <button id="multiply" class="button">Я добавлю *</button><br>
+                    <button id="pluss" class="button" data-text="+">Я добавлю +</button><br>
+                    <button id="minus" class="button" data-text="-">Я добавлю -</button><br>
+                    <button id="divide" class="button" data-text="/">Я добавлю /</button><br>
+                    <button id="multiply" class="button" data-text="*">Я добавлю *</button><br>
                 </div>
                 <div class="numbers">
                     <button id="one" class="button">1</button><br>
@@ -45,34 +45,13 @@
         </div>
         <script>
             const input = document.querySelector("#input");
-            const pluss = document.querySelector("#pluss");
-            pluss.addEventListener("click", () => input.value += "+");
-            const minus = document.querySelector("#minus");
-            minus.addEventListener("click", () => input.value += "-");
-            const divide = document.querySelector("#divide");
-            divide.addEventListener("click", () => input.value += "/");
-            const multiply = document.querySelector("#multiply");
-            multiply.addEventListener("click", () => input.value += "*");
-            const one = document.querySelector("#one");
-            one.addEventListener("click", () => input.value += "1");
-            const two = document.querySelector("#two");
-            two.addEventListener("click", () => input.value += "2");
-            const three = document.querySelector("#three");
-            three.addEventListener("click", () => input.value += "3");
-            const four = document.querySelector("#four");
-            four.addEventListener("click", () => input.value += "4");
-            const five = document.querySelector("#five");
-            five.addEventListener("click", () => input.value += "5");
-            const six = document.querySelector("#six");
-            six.addEventListener("click", () => input.value += "6");
-            const seven = document.querySelector("#seven");
-            seven.addEventListener("click", () => input.value += "7");
-            const eight = document.querySelector("#eight");
-            eight.addEventListener("click", () => input.value += "8");
-            const nine = document.querySelector("#nine");
-            nine.addEventListener("click", () => input.value += "9");
-            const zero = document.querySelector("#null");
-            zero.addEventListener("click", () => input.value += "0");
+            const buttons = document.querySelectorAll(".button");
+            for (const button of buttons) {
+                button.addEventListener("click", () => {
+                    input.value += button.dataset.text === undefined 
+                        ? button.textContent :  button.dataset.text;
+                });
+            }
         </script>
     </body>
 </body>
