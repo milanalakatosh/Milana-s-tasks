@@ -12,7 +12,8 @@
     justify-content: space-between;
     flex-direction: column;
     border-right: 1px solid black;
-    padding: 20px;
+    font-size: 20px;
+    line-height: 1.5;
 }
 /* .text {
     display: flex;
@@ -24,18 +25,43 @@
     flex-direction: column;
     padding: 20px;
 }
+.text {
+    display: flex;
+    flex-direction: column; 
+}
 .head {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
+    margin-bottom: 10px;
+}
+.inner-text {
+    font-size: 18px;
 }
 .note {
     cursor: pointer;
+    border-bottom: 1px solid black;
+    padding: 7px 10px;
 }
 .note.active {
     font-weight: 600;
+}
+.center-button {
+    display: flex;
+    justify-content: center;
+}
+.add {
+    margin-bottom: 20px;
+}
+.right-button {
+    display: flex;
+    justify-content: right;
+}
+.delete {
+   
 }
 button {
     width: 25px;
     height: 25px;
     border: 1px solid black;
+    border-radius: 10%;
 }
