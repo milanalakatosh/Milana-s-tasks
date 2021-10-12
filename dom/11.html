@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input class="input" value="">
+        <span class="input-text"></span>
+        <script>
+            const input = document.querySelector(".input");
+            const text = document.querySelector(".input-text");
+            input.addEventListener("input", () => text.textContent=input.value);
+        </script>
+    </body>
+</html>

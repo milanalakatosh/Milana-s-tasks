@@ -1,0 +1,87 @@
+.play-zone {
+    max-width: 700px;
+}
+.head-text {
+    color: gray;
+    opacity: 90%;
+    font-weight: 700;
+}
+.start {
+    margin: 70px 30px -10px;
+    background-color: #4696EB;
+    width: 97px;
+    height: 25px;
+    color: white;
+    font-size: 14px;
+}
+.table-score {
+    display: flex;
+    justify-content: right;
+    margin: 30px;
+}
+.game-score {
+    border: 1px solid black;
+    border-collapse: collapse; /* чтобы отображать только одинарные линии */
+}
+th { 
+    text-align: left; 
+    background: lightgray; 
+    padding: 5px; 
+    border: 1px solid black;
+}
+td { 
+    padding: 5px; 
+    border: 1px solid black; 
+}
+.score {
+    width: 30px;
+}
+.user-choose-container {
+    margin: 30px;  
+}
+.user-choose-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.item-button {
+    background-color: #E0E0E0;
+    border-radius: 5px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 30px;
+    font-size: 16px;
+}
+.computer-step {
+    margin: 30px; 
+}
+.computer-choice {
+    display: flex;
+    justify-content: center;
+}
+.computer-choice-icon {
+    font-size: 80px;
+}
+.computer-choice-icon >div {
+    font-size: 15px;
+    text-align: center;
+}
+.result {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.result-text {
+    margin: 30px;
+    width: 170px;
+    height:33px;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: red;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+   

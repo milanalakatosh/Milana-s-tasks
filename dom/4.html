@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .input {
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <input class="input one" value="">
+        <span>+</span>
+        <input class="input two" value="">
+        <span class="input-result"> = ? </span>
+        <div class="button-container"><button class="button">Нажмите, чтобы сложить!</button></div>
+        <script>
+            const inputOne = document.querySelector(".input.one");
+            const inputTwo = document.querySelector(".input.two");
+            const result = document.querySelector(".input-result");
+            const button = document.querySelector(".button");
+            button.addEventListener("click", () => {
+                let sum = 0;
+                sum += Number(inputOne.value) + Number(inputTwo.value);
+                result.textContent = " = " + sum;
+            });
+        </script>
+    </body>
+</html>

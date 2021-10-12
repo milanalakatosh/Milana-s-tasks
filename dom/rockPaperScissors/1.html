@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Камень, ножницы, бумага</title>
+        <link href="../../html/css/reset.css" rel="stylesheet" type="text/css">
+        <link href="1.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="play-zone">
+            <div class="head-text">Камень, ножницы, бумага</div>
+            <button class="start">Начать игру!</button>
+            <div class="table-score">
+                <table class="game-score">
+                    <tr>
+                        <th>Счет</th>
+                        <th></th>
+                    <tr>
+                    <tr>
+                        <td>Компьютер:</td>
+                        <td class="computer score">0</td>
+                    </tr>
+                    <tr>
+                        <td>Вы:</td>
+                        <td class="user score">0</td>
+                    </tr>
+                    <tr>
+                        <td>Ничья:</td>
+                        <td class="tie score">0</td>
+                    </tr>
+                    <tr>
+                        <td>Всего сыграно игр:</td>
+                        <td class="games-amount score">0</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="user-choose-container">Выберите:
+                <div class="user-choose-buttons">
+                    <button disabled class="rock item-button">&nbsp;Камень 🪨</button>
+                    <button disabled class="scissors item-button">&nbsp;Ножницы ✂️</button>
+                    <button disabled class="paper item-button">&nbsp;Бумага 📜</button>
+                </div>
+            </div>
+            <div class="computer-step">Выбор компьютера:<br>
+                <div class="computer-choice"><span class="computer-choice-icon"></span></div>
+            </div>
+            <div class="result"><div class="result-text">Результат!</div></div>
+        </div>
+        <script src="./1.js"></script>
+    </body>
+</html>

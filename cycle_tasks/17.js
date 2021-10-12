@@ -2,10 +2,10 @@ const readlineSync = require("readline-sync");
 
 let n = parseInt(readlineSync.question("Введите количество игр: "));
 let gameResult = 0;
-let stone = 0
+let stone = 0;
 let scissors = 0;
 let paper = 0;
-let myStone = 0
+let myStone = 0;
 let myScissors = 0;
 let myPaper = 0;
 
