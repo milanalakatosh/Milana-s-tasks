@@ -53,6 +53,12 @@ td {
     margin-top: 30px;
     font-size: 16px;
 }
+.item-button:hover {
+    border: 1px solid yellow;
+}
+.item-button:active {
+    border: 1px solid green;
+}
 .computer-step {
     margin: 30px; 
 }
@@ -74,10 +80,10 @@ td {
 }
 .result-text {
     margin: 30px;
-    width: 170px;
+    width: 200px;
     height:33px;
     padding: 4px;
-    border: 1px solid black;
+    border: 1px solid red;
     border-radius: 5px;
     color: red;
     font-size: 22px;

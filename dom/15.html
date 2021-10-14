@@ -2,25 +2,35 @@
 <html>
     <head>
         <style>
-            body {
+            .paragraph-list {
                 margin: 20px;
             }
-            .list {
-                padding: 15px
+            .button {
+                width: 200px;
             }
         </style>
     </head>
     <body>
-        <ol class="list" list-style="none";>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-            <li>Абзац с текстом</li>
-        </ol>
+        <div class="list-container">
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+            <div class="paragraph-list">Абзац с текстом</div>
+        </div>
         <button class="button">Нажми на меня!</button>
+        <script>
+            const button = document.querySelector(".button");
+            const paragraphList = document.querySelectorAll(".paragraph-list");
+
+            button.addEventListener("click", () => {
+                for (let i = 0; i < paragraphList.length; ++i) {
+                    paragraphList[i].textContent = i + ". " + paragraphList[i].textContent;
+                }
+            });
+        </script>
     </body>
 </html>
