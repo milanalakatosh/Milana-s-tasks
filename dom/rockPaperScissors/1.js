@@ -1,81 +1,103 @@
 const playContainer = document.querySelector(".play-zone");
 const startButton = document.querySelector(".start");
-const buttons  = document.querySelectorAll(".item-button");
+const buttons = document.querySelectorAll(".item-button");
 const scores = document.querySelectorAll(".score");
-const compChoice = document.querySelector(".computer-choice-icon");
-const textResult = document.querySelector(".result-text");
-const computerScore = document.querySelector(".computer.score");
-const userScore = document.querySelector(".user.score");
-const tieScore = document.querySelector(".tie.score");
-const gamesAmount = document.querySelector(".games-amount.score");
+const compChoiceEl = document.querySelector(".computer-choice-icon");
+const textResultEl = document.querySelector(".result-text");
+const computerScoreEl = document.querySelector(".computer.score");
+const userScoreEl = document.querySelector(".user.score");
+const tieScoreEl = document.querySelector(".tie.score");
+const gamesAmountEl = document.querySelector(".games-amount.score");
 const endButton = document.querySelector(".end");
+const items = ["rock", "scissors", "paper"];
 
-startButton.addEventListener("click", () => {
-    for (const button of buttons) {
-        button.disabled = false;
-        for (const score of scores) {
-            score.textContent="0";
-        }
-        compChoice.style = "opacity: 100%";
-        textResult.textContent="Результат";
-    }
-});
+startButton.addEventListener("click", startGame);
 
 for (let i = 0; i < buttons.length; ++i) {
     buttons[i].addEventListener("click", () => {
-        let userStep=i;
-        let compStep = Math.floor((Math.random() * 3));
-        compChoice.innerHTML = compStep === 0 ? "🪨 <div>Камень</div>" :
-            compStep === 1 ? "✂️ <div>Ножницы</div>" : "📜 <div>Бумага</div>";
-        // if (compStep === 0) compChoice.innerHTML = "🪨 <div>Камень</div>";
-        // else if (compStep === 1) compChoice.innerHTML = "✂️ <div>Ножницы</div>";
-        // else compChoice.innerHTML = "📜 <div>Бумага</div>";
-        textResult.textContent = 
-            (userStep===0 && compStep===1)||(userStep===2 && compStep===0)||(userStep===1 && compStep===2) ? "Вы выйграли!"
-                : (compStep=== 0 && userStep===1)||(compStep===2 && userStep===0)||(compStep===1 && userStep===2) ? "Вы проиграли!"
-                    : "У вас ничья!"; 
-        if (textResult.textContent==="Вы выйграли!") userScore.textContent=Number(userScore.textContent)+Number(1); 
-        else if (textResult.textContent === "Вы проиграли!") computerScore.textContent=Number(computerScore.textContent)+Number(1) 
-        else tieScore.textContent=Number(tieScore.textContent)+Number(1);
-        gamesAmount.textContent = Number(gamesAmount.textContent) + Number(1);
-        // if ((userStep === 0 && compStep === 1) || (userStep === 2 && compStep === 0) || (userStep === 1 && compStep === 2)) {
-        //     textResult.textContent = "Вы выйграли!";
-        //     userScore.textContent = Number(userScore.textContent) + Number(1);
-        // }
-        // if ((compStep === 0 && userStep === 1) || (compStep === 2 && userStep === 0) || (compStep === 1 && userStep === 2)) {
-        //     textResult.textContent = "Вы проиграли!";
-        //     computerScore.textContent = Number(computerScore.textContent) + Number(1);
-        // }
-        // if (compStep === userStep) {
-        //     textResult.textContent = "У вас ничья!";
-        //     tieScore.textContent = Number(tieScore.textContent) + Number(1);
-        // }
-    }); 
+        const userStep = items[i];
+        doGameStep(userStep);
+    });
 }
-// function generateTextResult(result) {
-//     result.textContent = 
-//             (userStep===0 && compStep===1)||(userStep===2 && compStep===0)||(userStep===1 && compStep===2) ? "Вы выйграли!"
-//                 : (compStep=== 0 && userStep===1)||(compStep===2 && userStep===0)||(compStep===1 && userStep===2) ? "Вы проиграли!"
-//                     : "У вас ничья!";
-//     return result.textContent;
-// }
 
-endButton.addEventListener("click", () => {
+endButton.addEventListener("click", endGame);
+
+
+function startGame() {
+    for (const button of buttons) {
+        button.disabled = false;
+    }
+    for (const score of scores) {
+        score.textContent = "0";
+    }
+    compChoiceEl.style = "opacity: 100%";
+    textResultEl.textContent = "Результат";
+    removeFinalResult();
+}
+
+function doGameStep(userStep) {
+    const compStep = _.sample(items);
+
+    const gameResult = getGameResult(compStep, userStep);
+
+    updateScore(gameResult);
+
+    compChoiceEl.innerHTML = getCompChoiceHTML(compStep);
+
+    textResultEl.textContent = getTextResult(gameResult);
+}
+
+const updateScore = (gameResult) => {
+    if (gameResult === "win") userScoreEl.textContent = Number(userScoreEl.textContent) + 1;
+    else if (gameResult === "loose") computerScoreEl.textContent = Number(computerScoreEl.textContent) + 1;
+    else tieScoreEl.textContent = Number(tieScoreEl.textContent) + 1;
+    gamesAmountEl.textContent = Number(gamesAmountEl.textContent) + 1;
+};
+
+const getCompChoiceHTML = (compStep) => compStep === "rock" ? "🪨 <div>Камень</div>" :
+    compStep === "scissors" ? "✂️ <div>Ножницы</div>" : "📜 <div>Бумага</div>";
+
+const getTextResult = (gameResult) => gameResult === "win" ? "Вы выйграли!"
+    : gameResult === "loose" ? "Вы проиграли!"
+        : "У вас ничья!";
+
+const getGameResult = (compStep, userStep) => (userStep === "rock" && compStep === "scissors") ||
+    (userStep === "paper" && compStep === "rock") ||
+    (userStep === "scissors" && compStep === "paper")
+    ? "win"
+    : (compStep === "rock" && userStep === "scissors") ||
+        (compStep === "paper" && userStep === "rock") ||
+        (compStep === "scissors" && userStep === "paper")
+        ? "loose"
+        : "tie";
+
+const getFinalResult = (compFinalResult, userFinalResult) => compFinalResult > userFinalResult ? "По итогу всех сыгранных игр вы проиграли!"
+    : compFinalResult < userFinalResult ? "По итогу всех сыгранных игр вы выйграли!"
+        : "По итогу всех сыгранных игр у вас ничья!";
+
+const removeFinalResult = () => {
+    const sumUpResult = document.querySelector(".sum-up-result");
+    if (sumUpResult !== null) sumUpResult.remove();
+};
+
+function endGame() {
     for (const button of buttons) {
         button.disabled = true;
     }
-    const sumUpResult = document.querySelector(".sum-up-result");
-    if (sumUpResult!==null) sumUpResult.remove();
+
+    removeFinalResult();
+
     const div = document.createElement("div");
     div.classList.add("center");
     playContainer.appendChild(div);
+
     const divChild = document.createElement("div");
     divChild.classList.add("sum-up-result");
-    divChild.textContent = Number(computerScore.textContent)>Number(userScore.textContent) ? "По итогу всех сыгранных игр вы проиграли!"
-        : Number(computerScore.textContent)<Number(userScore.textContent) ? "По итогу всех сыгранных игр вы выйграли!"
-            : "По итогу всех сыгранных игр у вас ничья!";
-    div.appendChild(divChild);
-});
 
+    const compFinalResult = Number(computerScoreEl.textContent);
+    const userFinalResult = Number(userScoreEl.textContent);
+    divChild.textContent = getFinalResult(compFinalResult, userFinalResult);
+    div.appendChild(divChild);
+}
 
 

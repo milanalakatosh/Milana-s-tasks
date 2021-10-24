@@ -18,21 +18,25 @@
     flex-direction: row;
     justify-content: center;
 }
+.image-row>.image {
+    cursor:pointer;
+}
 .image {
     width: auto;
     height: 70px;
     margin: 3px;
+    opacity: 60%;
 }
 .image:hover {
-    border: 1px solid yellow;
+    opacity: 100%;
 }
-.image:active {
-    border: 1px solid red;
-}
-.active {
-    border: 2px solid red;
+.image-main-container>.active {
+    opacity: 100%;
     height: 530px;
     width: auto;
+}
+.image-row>.active {
+    opacity: 100%;
 }
 .button {
     width: 60px;
@@ -40,4 +44,5 @@
     background-color: royalblue;
     color: white;
     margin: 5px;
+    cursor: pointer;
 }

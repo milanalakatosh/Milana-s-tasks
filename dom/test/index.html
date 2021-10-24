@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Тест</title>
+        <link href="../../html/css/reset.css" rel="stylesheet" type="text/css">
+        <link href="./index.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="test-container">
+            <div class="button-container center"><button class="start-testing">Начать тестирование</button></div>
+            <div class="question-container">
+                <div class="question active">
+                    1. В чем разница между null и undefined?
+                    <div class="answer-option">
+                        <label class="answer"><input type="radio" name="one">Ничем существенно не отличаются</label>
+                        <label class="answer"><input type="radio" name="one">undefined — это переменная, которая объявлена, но ей не присвоено значение, а  null было явно присвоено значение null.</label>
+                        <label class="answer"><input type="radio" name="one">null — это переменная, которая объявлена, но ей не присвоено значение, а  undefined было явно присвоено значение null.</label>
+                    </div>
+                </div>
+                <div class="question">
+                    2. В чем разница между ключевыми словами «let» и «const»?
+                    <div class="answer-option">
+                        <label class="answer"><input type="radio" name="two">Ничем существенно не отличаются.</label>
+                        <label class="answer"><input type="radio" name="two">В случае с «let» можно менять значение переменной, а в случае с «const» — нет.</label>
+                        <label class="answer"><input type="radio" name="two">«let» используется для объявления Number,  а «const» для объявления объектов.</label>
+                    </div>
+                </div>
+                <div class="question">
+                    3. Что такое замыкание?
+                    <div class="answer-option">
+                        <label class="answer"><input type="radio" name="three">Функция, в теле которой присутствуют ссылки на переменные, объявленные вне тела этой функции в окружающем коде и не являющиеся её параметрами.</label>
+                        <label class="answer"><input type="radio" name="three">Изменение исходного кода программы без изменения его внешнего поведения.</label>
+                        <label class="answer"><input type="radio" name="three">Это программа, которая напрямую выполняет код без его предыдущей компиляции в исполняемый файл.</label>
+                    </div>
+                </div>
+                <div class="question">
+                    4. Что такое чистые функции?
+                    <div class="answer-option">
+                        <label class="answer"><input type="radio" name="four">Возвращают разные исходные данные при одинаковых входных, изменяют состояние приложения, изменяют «внешний мир».</label>
+                        <label class="answer"><input type="radio" name="four">Вызывает функцию внутри себя.</label>
+                        <label class="answer"><input type="radio" name="four">Не изменяет свои параметры, не 'лезет вовне', с одними и теми же аргументами выдает один и тот же результат, не имеет Side Effect.</label>
+                    </div>
+                </div>
+                <div class="buttons"><button class="back button">Назад</button><button class="further button">Далее</button></div>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
