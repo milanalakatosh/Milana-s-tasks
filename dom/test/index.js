@@ -1,14 +1,33 @@
 
 
-const buttonFurther = document.querySelector(".further.button");
+const buttonNext = document.querySelector(".further.button");
+const buttonBack = document.querySelector(".back.button");
 const questions = document.querySelectorAll(".question");
+let index;
 
-for (let i = 0; i < questions.length; ++i) {
-    const index=i;
-    const item = questions[i];
-    buttonFurther.addEventListener("click", () => {
-        const activeQuestion = document.querySelector(".active");
-        activeQuestion.classList.remove("active");
-        if (index < questions.length-2) item[index+1].classList.add("active");
-    });
+buttonNext.addEventListener("click", showNextQuestion);
+buttonBack.addEventListener("click", showLastQuestion);
+
+
+function showNextQuestion() {
+    for (let i = 0; i < questions.length; ++i) {
+        if (questions[i].classList.contains("active") === true && i < questions.length-1) {
+        // document.querySelector(".active")
+            questions[i].classList.remove("active");
+            questions[i+1].classList.add("active");
+            break;
+        }
+    
+    }
+}
+function showLastQuestion() {
+    for (let i = 0; i < questions.length; ++i) {
+        if (questions[i].classList.contains("active") === true && i !== 0) {
+        // document.querySelector(".active")
+            questions[i].classList.remove("active");
+            questions[i-1].classList.add("active");
+            break;
+        }
+        
+    }
 }
