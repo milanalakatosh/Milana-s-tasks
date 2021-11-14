@@ -2,7 +2,7 @@ const input = document.querySelector(".input");
 const buttonStart = document.querySelector(".start.button");
 const buttonStop = document.querySelector(".stop.button");
 let timer;
-const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":"];
 
 input.addEventListener("input", () => { //1a23
     let y = "";
@@ -12,10 +12,9 @@ input.addEventListener("input", () => { //1a23
         }
     }
     input.value = y;
-    buttonStart.disabled = input.value==="";//buttonStart.disabled = input.value!=="" ? false : true;
-    buttonStop.disabled = input.value==="";
+    buttonStart.disabled = !isValidTime(y);//buttonStart.disabled = input.value!=="" ? false : true;
+    buttonStop.disabled = !isValidTime(y);
 });
-
 
 buttonStart.addEventListener("click", () => {
     switch (buttonStart.textContent) {
@@ -37,10 +36,10 @@ buttonStart.addEventListener("click", () => {
 });
 
 function countDown() {
-    let seconds = Number(input.value);
+    let seconds = timeToSec(input.value);
     if (seconds > 1) {
         --seconds;
-        input.value = seconds;
+        input.value = formatTime(seconds);
     } else {
         clearInterval(timer);
         input.value = "Время вышло";
@@ -56,3 +55,41 @@ buttonStop.addEventListener("click", () => {
     buttonStart.textContent="Старт";
     clearInterval(timer);
 });
+
+// string => boolean
+// "100" => true
+// "0:40" => true
+// "0::40" => false
+// "0:156" => false
+
+function isValidTime(time) {
+    if ((time==="") || (time.includes(":") && time.split(":").length > 2) || (time.includes(":") && time.split(":")[1].length > 1)) {
+        return false;
+    } else {
+    return true;
+    }
+}
+
+// string => number
+// "100" => 100
+// "1:10" => 70
+function timeToSec(time) {
+    if (time.includes(":")) {
+        const chunks = input.value.split(":");
+        const sec = Number(chunks[0]) * 60;
+        return sec + Number(chunks[1]);
+    } else {
+        return Number(time);
+    }
+}
+
+// number => string
+// 100 => "1:40"
+// 20 => "0:20"
+function formatTime(time) {
+    let minutes = Math.floor(time/60);
+    minutes = minutes<10? "0"+minutes : minutes;
+    let sec = time % 60;
+    sec = sec<10? "0"+sec : sec;
+    return minutes + ":" + sec;
+}
