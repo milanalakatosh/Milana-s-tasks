@@ -17,6 +17,7 @@ input.addEventListener("input", () => { //1a23
 });
 
 buttonStart.addEventListener("click", () => {
+    input.disabled=true;
     switch (buttonStart.textContent) {
         case "Старт":
             timer = setInterval(countDown, 1000);
@@ -49,6 +50,7 @@ function countDown() {
 }
 
 buttonStop.addEventListener("click", () => {
+    input.disabled=false;
     input.value="";
     buttonStart.disabled = true;
     buttonStop.disabled = true;
@@ -62,12 +64,26 @@ buttonStop.addEventListener("click", () => {
 // "0::40" => false
 // "0:156" => false
 
+//если двоеточия нет,любое число без двоеточия
+//если двоеточие есть, то:
+    //1. одно двоеточие разделяет строку на 2 числа
+    //2. 2-е число не больше 59
+
 function isValidTime(time) {
-    if ((time==="") || (time.includes(":") && time.split(":").length > 2) || (time.includes(":") && time.split(":")[1].length > 1)) {
-        return false;
+    if (!time.includes(":")) {
+        return isStringNumber(time);
     } else {
-    return true;
+        const chunks = time.split(":");
+        return chunks.length === 2 && chunks.every(isStringNumber) && Number(chunks[1]) < 60;
     }
+}
+
+function isStringNumber(x) {
+    const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    for(const a of x) {   
+        if (!numbers.includes(a)) return false;
+    }
+    return x!=="";//return x!=="" ? true: false;
 }
 
 // string => number
