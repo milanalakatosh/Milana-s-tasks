@@ -10,7 +10,21 @@ let sumWeight = 0;
 
 
 for (let product in products2) {
-    sumPrice += products2[product].price;// почему через квадратные?
+    sumPrice += products2.product.price;// почему через квадратные?
     sumWeight += products2[product].weight;
 }
 console.log(sumPrice, sumWeight);
+
+const obj = {
+    product: 'milk',
+    milk: 10,
+    eggs: 20,
+};
+const product = a > 10 ? 'eggs' : 'milk';
+
+console.log(obj.milk);
+console.log(obj['milk']);
+console.log(obj[product]); // 10/20
+
+console.log(obj.product); // milk
+console.log(obj['product']); // milk

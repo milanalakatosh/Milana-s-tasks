@@ -6,6 +6,7 @@ const buttonNext = document.querySelector(".further.button");
 const buttonBack = document.querySelector(".back.button");
 const questions = document.querySelectorAll(".question");
 const answersInput = document.querySelectorAll(".input-answer");
+const result = document.querySelector(".result.page");
 let correctAnswersAmount = 0;
 // const gameResult = document.querySelector(".game-result");
 startTestingButton.addEventListener("click", () => {
@@ -18,7 +19,7 @@ buttonNext.addEventListener("click", () => {
     if (buttonNext.textContent !== "Начать заново") {
         showNextQuestion();
     } else {
-        resetAll(questions[questions.length - 1], questions[0]);
+        resetAll();
     }
 });
 
@@ -58,16 +59,16 @@ function showNextQuestion() {
     buttonBack.disabled = false;
     buttonNext.disabled = true;
     for (let i = 0; i < questions.length; ++i) {
-        if (questions[i].classList.contains("active") === true && i === questions.length - 2) {
+        if (questions[i].classList.contains("active") === true && i === questions.length - 1) {
             countCorrectAnswers();
             questions[i].classList.remove("active");
-            questions[i + 1].classList.add("active");
-            questions[i + 1].innerHTML = "Из " + (questions.length - 1) + questionSpelling + correctAnswersAmount + correctSpelling;
+            result.classList.add("active");
+            result.innerHTML = "Из " + questions.length + questionSpelling + correctAnswersAmount + correctSpelling;
             buttonNext.textContent = "Начать заново";
             buttonNext.disabled = false;
             buttonBack.style.display = "none";
         }
-        if (questions[i].classList.contains("active") === true && i < questions.length - 2) {
+        if (questions[i].classList.contains("active") === true && i < questions.length - 1) {
             // document.querySelector(".active")
             questions[i].classList.remove("active");
             questions[i + 1].classList.add("active");
@@ -90,13 +91,13 @@ function showPreviousQuestion() {
     if (questions[0].classList.contains("active")) buttonBack.disabled = true;
 }
 
-function resetAll(x, y) {
+function resetAll() {
+    result.classList.remove("active");
+    result.innerHTML = "";
     for (const answer of answersInput) {
         answer.checked = false;
     }
-    x.innerHTML = "";
-    x.classList.remove("active");
-    y.classList.add("active");
+    questions[0].classList.add("active");
     buttonNext.textContent = "Далее";
     buttonBack.style.display = "inline-block";
 }

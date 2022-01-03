@@ -1,7 +1,9 @@
+
 const startButton = document.querySelector(".start.button");
 const wordCard = document.querySelector(".word.card");
 const translationCard = document.querySelector(".translation.card");
 const nextButton = document.querySelector(".next.button");
+const resultCard = document.querySelector(".result.card");
 
 const words = {
     appliance: "устройство",
@@ -16,20 +18,10 @@ function getRandomIndex(x) {
 //     return randomEl===checkRandomEl ? getRandomWord() : randomEl;
 }
 let arrOfKeys;
-function showCard() {
-    if (arrOfKeys.length !== 0) {
-        showRandomWord(arrOfKeys);
-    } else if(arrOfKeys.length === 0) {
-        wordCard.textContent = "Карточки закончились!";
-        translationCard.style.display = 'none';
-        nextButton.textContent = 'Play again';
-    }
-    // translationCard.textContent = arrOfValues[index];
-}
 
 startButton.addEventListener("click", () => {
     arrOfKeys = Object.keys(words);
-    showCard();
+    showRandomWord(arrOfKeys);
     wordCard.style.display = 'block';
     nextButton.style.display = 'block';
 });
@@ -44,16 +36,23 @@ translationCard.addEventListener("click", () => {
 });
 
 nextButton.addEventListener("click", () => {
-    if (nextButton.textContent!=='Play again') {
-        showCard();
+    // wordCard.style.disabled=true;
+    if (arrOfKeys.length>0) {
+        showRandomWord(arrOfKeys);
         wordCard.style.display = 'block';
         translationCard.style.display = 'none';
-    } else {
+    } else if (nextButton.textContent !== 'Play again') {
+        wordCard.style.display = 'none';
+        resultCard.style.display = 'block';
+        resultCard.textContent = "Карточки закончились!";
+        nextButton.textContent = 'Play again';
+    }  else {
         resetAll();
     }
 });
 
 function showRandomWord(arr) {
+    resultCard.textContent = "";
     const index = getRandomIndex(arr);
         wordCard.textContent = arr[index];
         translationCard.textContent = words[arr[index]];
@@ -64,4 +63,6 @@ function resetAll() {
     arrOfKeys = Object.keys(words);
     showRandomWord(arrOfKeys);
     nextButton.textContent = 'Next';
+    resultCard.style.display="none";
+    wordCard.style.display="block";
 }

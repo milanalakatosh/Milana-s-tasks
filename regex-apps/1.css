@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+input {
+    font-size: 20px;
+}
+textarea {
+    font-size: 20px;
+}
+.container {
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+}
+.left.side {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+.source {
+    min-width: 220px;
+    min-height: 270px;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.search {
+    min-width: 220px;
+    min-height: 100px;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.right.side {
+    margin-left: 15px;
+    min-width: 220px;
+    height: 400px;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    flex: 1
+}
+.result {
+    padding: 10px;
+}
+.highlight {
+    background-color: orange;
+}
+   

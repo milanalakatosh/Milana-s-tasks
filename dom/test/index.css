@@ -24,11 +24,11 @@
     padding: 30px;
     font-size: 16px;
 }
-.question {
+.page {
     margin-bottom: 10px;
     display: none;
 }
-.question.active {
+.page.active {
     display: block;
 }
 input {
@@ -54,7 +54,7 @@ input {
     cursor: pointer;
 }
 
-.question.game-result {
+.game-result {
     font-size: 20px;
     text-align: center;
     color: tomato;

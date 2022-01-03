@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+.text {
+    font-size: 20px;
+    border: 1px solid black;
+    width: 375px;
+    height: 500px;
+}
+.container {
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+}
+.left.side {
+    margin-right: 20px;;
+}
+.right.side {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    margin: 5px;
+}
+.blue {
+    background: cornflowerblue;
+}
+.yellow {
+    background-color: yellow;
+}
