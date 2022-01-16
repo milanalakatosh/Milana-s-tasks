@@ -7,7 +7,7 @@
 {
     // 2. получить массив из чётных элементов
     const arr = [2, 5, 10, 1, 0, 11, 100, 33];
-    const arr2 = arr.filter(el => el % 2 === 0 && el !== 0);
+    const arr2 = arr.filter(el => el % 2 === 0);
     console.log(arr2);
 }
 {
@@ -52,10 +52,7 @@
     const arr2 = arr.map(el => el * el);
     console.log(arr2);
 }
-{
-    // 10. получить массив, где каждый элемент - это квадрат элемента исходного массива
-    const arr = [2, 4, 10]; // нужно получить [4, 16, 100]
-}
+
 {
     const users = [
         {
@@ -99,18 +96,21 @@
     const veronika = users.find(user=>user.age>25);
     veronika.name = "Вероника";
     // 15. найти первого пользователя младше 18 и заменить его на {name: 'Сергей', age: 50}
-    const sergei = users.find(user=>user.age<18);
-    sergei.name = "Сергей";
+    const index = users.findIndex(user=>user.age<18);
+    users[index] = {name: 'Сергей', age: 50};
     // 16. получить новый массив, где каждый пользователь будет старше на один год (Андрею должно быть 21, Ксении 31 и т.д.), при этом пользователи должны быть отсортированы в порядке возрастания возраста
     const olderUsers = users   //и сам массив users стал старше на 1 год
         .map(user=> {
-            user.age+=1;
-            return user;
+            const newUser = {
+                ...user,
+                // name: user.name,
+                // age: user.age,
+                age: user.age + 1
+            };
+            return newUser;
         })
         .sort((a, b) => {
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
-            else return 0;
+            return a.name > b.name ? 1 : (a.name < b.name) ? -1 : 0;
         });
     // 17. проверить, что все пользователи совершеннолетние
     const allAdults = users.every(user=>user.age>=18);
@@ -120,5 +120,5 @@
         const newArrWithoutMihail = users.filter(user=> user.name !== "Михаил");
         const removeMihail = users.splice(users.findIndex(user=> user.name === "Михаил"), 1);
 
-    console.log(childrenNames, firstPersonUnder18, sortedByABC, veronika, users, olderUsers, allAdults, userUnder28, newArrWithoutMihail, users, removeMihail, users);
+    console.log(removeMihail);
 }
