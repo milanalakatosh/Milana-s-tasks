@@ -5,15 +5,15 @@ body {
     font-size: 20px;
     flex-direction: column;
 }
-#edit {
-    margin-bottom: 0px;
-}
 .text, .text-area {
     font-size: 20px;
     border: 1px solid black;
     width: 375px;
     height: 500px;
-    padding: 5px;;
+    padding: 5px;
+}
+.text-area {
+    display: none;
 }
 .container {
     display: flex;
@@ -45,9 +45,11 @@ input {
 .unmarked {
     background-color: transparent;
 }
+#edit, #ok {
+    margin: 7px;
+}
 #ok {
-    width: 10%;
-    visibility: hidden;
+    display: none;
 }
 .delete-icon {
     cursor: pointer;
