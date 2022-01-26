@@ -29,7 +29,8 @@ findPositiveValue({ a: -500, b: -1, c: -3 }); // возвратит undefined
 // 3. Напишите функцию findNot, которая должна найти первое значение объекта несоответствующее критерию.
 // Используйте ранее написанную функцию find
 function findNot(obj, predicate) {
-    return find(obj, predicate===false);
+    if (predicate() === true) predicate() === false;  
+    return find(obj, predicate);
 }
 // работает таким образом
 const obj3 = { a: 1, b: 2, c: 3 };
