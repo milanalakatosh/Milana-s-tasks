@@ -16,10 +16,11 @@ function runProgram(str) {
     createMailsRadioGroups();
     handleMailActivation();
     handleMailRemoving();
+    handleMailPenciling();
     handleTextEditing(str);
 }
 function createHtmlForMails(str) {
-    return str.replace(regex, '<span class="mail">$&</span><span class="delete-icon"> &#10060;</span>');
+    return str.replace(regex, '<span class="mail-wrapper"><span class="mail">$&</span><span class="delete-icon"> &#10060;</span><span class="pencil-icon">✏️</span></span>');
 }
 function createMailsRadioGroups() {
     const mails = text.textContent.match(regex);
@@ -30,7 +31,7 @@ function createMailsRadioGroups() {
         radioInput.type = 'radio';
         radioInput.name = 'mail';
         radioInput.classList.add("input");
-        label.textContent = mail;
+        label.innerHTML = '<span class="mail-in-label">'+mail+'</span>';
         rightSide.append(label);
         label.prepend(radioInput);
 
@@ -42,6 +43,15 @@ function createMailsRadioGroups() {
         deleteIcon.innerHTML = "&#10060;";
         buttonDelete.append(deleteIcon);
         buttonDelete.value = deleteIcon.innerHTML;
+
+        const buttonPencil = document.createElement("input");
+        buttonPencil.type = 'button';
+        buttonPencil.classList.add("pencil");
+        label.append(buttonPencil);
+        const pencilIcon = document.createElement("p");
+        pencilIcon.innerHTML = "✏️";
+        buttonPencil.append(pencilIcon);
+        buttonPencil.value = pencilIcon.innerHTML;
     }
     labelRadioMails = rightSide.querySelectorAll(".mailInColumn");
 }
@@ -68,20 +78,45 @@ function handleMailActivation() {
     }
 }
 function handleMailRemoving() {
-    const emojisInText = text.querySelectorAll(".delete-icon");
+    const mailWrapper = text.querySelectorAll(".mail-wrapper");
     const deleteIconOnLabelRadio = rightSide.querySelectorAll(".delete");
     for (let j = 0; j < deleteIconOnLabelRadio.length; ++j) {
         deleteIconOnLabelRadio[j].addEventListener("click", () => {
-            labelRadioMails[j].remove();
-            domElMails[j].classList.add("unmarked");
-            emojisInText[j].remove();
+            deleteMail(mailWrapper[j], labelRadioMails[j]);
         });
     }
-    for (let j = 0; j < emojisInText.length; ++j) {
-        emojisInText[j].addEventListener("click", () => {
-            labelRadioMails[j].remove();//почему не присваивает значения для mailsRightSide
-            domElMails[j].classList.add("unmarked");
-            emojisInText[j].remove();
+    const deleteIconsInText = text.querySelectorAll(".delete-icon");
+    for (let j = 0; j < deleteIconsInText.length; ++j) {
+        deleteIconsInText[j].addEventListener("click", () => {
+            deleteMail(mailWrapper[j], labelRadioMails[j]);
+        });
+    }
+}
+function deleteMail (mailInText, mailInLabel) {
+    mailInText.textContent=mailInText.querySelector(".mail").textContent;
+    mailInLabel.remove();
+}
+function handleMailPenciling() {
+    const pencilIconsOnLabelRadio = rightSide.querySelectorAll(".pencil");
+    for (let j = 0; j < pencilIconsOnLabelRadio.length; ++j) {
+        pencilIconsOnLabelRadio[j].addEventListener("click", () => {
+            const updateMail = prompt('Update your e-mail?');
+            if (updateMail !== null && updateMail !== "" && updateMail !== 0) {
+                //labelRadioMails[j].textContent=updateMail;
+                labelRadioMails[j].querySelector(".mail-in-label").textContent=updateMail;
+                domElMails[j].textContent = updateMail;
+            }
+        });
+    }
+    const pencilIconsInText = text.querySelectorAll(".pencil-icon");
+    for (let j = 0; j < pencilIconsInText.length; ++j) {
+        pencilIconsInText[j].addEventListener("click", () => {
+            const updateMail = prompt('Update your e-mail?');
+            if (updateMail !== null || updateMail !== "") {
+                //labelRadioMails[j].textContent=updateMail;
+                labelRadioMails[j].innerHTML = '<input type="radio" name="mail" class="input">' + updateMail + '<input type="button" class="delete" value="❌"></input><input type="button" class="pencil" value="✏">';
+                domElMails[j].textContent = updateMail;
+            }
         });
     }
 }
@@ -94,7 +129,7 @@ function handleTextEditing(str) {
         textArea.style.display = "inline-block";
         textArea.value = str;
     });
-    
+
     okButton.addEventListener("click", () => {
         okButton.style.display = "none";
         editButton.style.display = "inline-block";
@@ -103,4 +138,3 @@ function handleTextEditing(str) {
         runProgram(textArea.value);
     });
 }
-

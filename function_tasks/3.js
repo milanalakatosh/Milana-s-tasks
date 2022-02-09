@@ -17,9 +17,8 @@ console.log(find(obj1, (value, key) => key === 'b')); // возвратит 2
 
 // 2. Напишите функцию findPositiveValue, которая должна найти первое положительное значение в объекте
 // Используйте ранее написанную функцию find
-function findPositiveValue(obj) {
-    return find(obj, (value) => value > 0);
-}
+const findPositiveValue = (obj) => find(obj, (value) => value > 0);
+
 console.log("First Positive: " + findPositiveValue({ a: -1, b: 1, c: 10 }), 
     "First Positive: " + findPositiveValue({ a: -500, b: -1, c: -3 }));
 //работает таким образом
@@ -29,8 +28,7 @@ findPositiveValue({ a: -500, b: -1, c: -3 }); // возвратит undefined
 // 3. Напишите функцию findNot, которая должна найти первое значение объекта несоответствующее критерию.
 // Используйте ранее написанную функцию find
 function findNot(obj, predicate) {
-    if (predicate() === true) predicate() === false;  
-    return find(obj, predicate);
+    return find(obj, (value, key) => !predicate(value, key));
 }
 // работает таким образом
 const obj3 = { a: 1, b: 2, c: 3 };
@@ -57,27 +55,35 @@ function findPositiveInNumbersJSON(fileName) {
 console.log("findPositiveInNumbersJSON: "+findPositiveInNumbersJSON("numbers.json", (value, key) => value > 0));
 // // 6. Напишите универсальную функцию поиска в переданном объекте, массиве или файле значения по критерию.
 // // Первым параметром может быть массив, объект или строка означающая путь к файлу
-// function findUniversal(obj, predicate) {
-//     let x = JSON.parse(fs.readFileSync(path.join(dirName(import.meta.url), obj)));
-//     x.entries().forEach(element => {
-//         if (predicate(element.value, element.key)) return element.value;
-//     });
-// }
-// //console.log("Universal: " + findUniversal("numbers.json",  (value, key) => value < -2));
-//     /* ваш код здесь */
+function findUniversal(obj, predicate) {
+    if (typeof obj === "string") return findInFile(obj, predicate);
+    if (Array.isArray(obj)) {
+       return obj.find(predicate);
+    }
+    else return find(obj, predicate);
+}
+const arr = [1, 2, 3, -4];
+console.log("Universal1: " + findUniversal("numbers.json",  (value, key) => value < -2));
+console.log("Universal2: " + findUniversal({ a: -500, b: -1, c: -5 },  (value, key) => value < -2));
 
+function complement(fn) {
+
+}
+
+const isPositive = (x) => x >= 0;
+const isNegative = complement(isPositive);
 
 // // 7. Напишите функцию, которая принимает предикат и возращает функцию, которая принимает объект и ищет в нём значение
 // // по ранее заданному предикату (смотрите примеры для большей ясности).
-// function makeFinder(predicate) {
-//     for (const item in obj) {
-//         if(predicate(obj[item], item)) return obj[item];
-//     } 
-// };
+function makeFinder(predicate) {
+    for (const item in obj) {
+        if(predicate(obj[item], item)) return obj[item];
+    } 
+};
 
 // // работает таким образом
-// const findNegativeValue = makeFinder((value) => value < 0);
-// console.log("findNegativeValue:"findNegativeValue({ a: 1, b: -50, c: 0 })); // вернёт -50
+const findNegativeValue = makeFinder((value) => value < 0);
+console.log("findNegativeValue:"findNegativeValue({ a: 1, b: -50, c: 0 })); // вернёт -50
 
 // const findWithKeysCD = makeFinder((value, key) => key === 'c' || key === 'd');
 // //findWithKeysCD({a: 1, b: -50, c: 0}); // вернёт 0
