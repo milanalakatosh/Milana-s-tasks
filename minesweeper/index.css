@@ -53,6 +53,7 @@ body {
 }
 .opened {
     background-color: #FFFAFA;
+    pointer-events: none;
 }
 .field>* {
     display:flex;
