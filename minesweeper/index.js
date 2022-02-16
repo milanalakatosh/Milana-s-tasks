@@ -2,20 +2,21 @@
 const field = document.querySelector(".field");
 const iconSmile = document.querySelector(".icon");
 let buttons;
-const maze.length = 9;
+const n = 9;
 const arrButtons = [];
 createButtonsOnField();
 putMines();
 putNumber();
 //handleUserClick();
+openButtonsIfCorrectFlags();
 putFlag();
 
 function createButtonsOnField() {
-    for (let i = 0; i < maze.length; i++) {
+    for (let i = 0; i < n; i++) {
         const div = document.createElement("div");//как по-другому тут сделать /n
         field.append(div);
         const buttonsRow = [];
-        for (let j = 0; j < maze.length; j++) {
+        for (let j = 0; j < n; j++) {
             const button = document.createElement("button");
             button.classList.add('button');
             div.append(button);
@@ -47,11 +48,14 @@ function putNumber() {
         for (let j = 0; j < arrButtons[i].length; ++j) {
             if (!arrButtons[i][j].classList.contains("mined")) {
                 const arrNeighbors = findNeighbors(arrButtons, i, j);
-                let number=0;
-                for (let k=0; k < arrNeighbors.length;k++) {
-                    if (arrNeighbors[k].button.textContent==="💣") number += 1; //я тут запуталас
+                let number = 0;
+                for (let k = 0; k < arrNeighbors.length; k++) {
+                    if (arrNeighbors[k].button.textContent === "💣") number += 1; //я тут запуталас
                 }
-                if (number !== 0) arrButtons[i][j].textContent = number;
+                if (number !== 0) {
+                    arrButtons[i][j].textContent = number;
+                    arrButtons[i][j].classList.add("number");
+                }
             }
         }
     }
@@ -103,41 +107,81 @@ function putNumber() {
 // }
 
 function putFlag() {//handleRightClick
-    for(const button of buttons) {
-        button.addEventListener("contextmenu", ()=> {
-            if (button.textContent!=="🚩" && button.textContent==="") {
-                button.addEventListener('click', function() {
+    for (const button of buttons) {
+        button.addEventListener("contextmenu", () => {
+            if (button.textContent !== "🚩" && button.textContent === "") {
+                button.addEventListener('click', function () {
                     return false;
                 });
-                button.textContent="🚩";
-            } else if (button.textContent==="🚩"){
-                button.addEventListener('click', function() {
+                button.textContent = "🚩";
+            } else if (button.textContent === "🚩") {
+                button.addEventListener('click', function () {
                     return true;
                 });
-                button.textContent="";
+                button.textContent = "";
             } else {
                 openButtonsIfCorrectFlags();
             }
-            
+
         });
     }
 }
-// function openButtonsIfCorrectFlags (button) {
+function openButtonsIfCorrectFlags() {
+    for (let i = 0; i < arrButtons.length; ++i) {
+        for (let j = 0; j < arrButtons[i].length; ++j) {
+            if (arrButtons[i][j].classList.contains("number")) {
+                arrButtons[i][j].addEventListener("click", () => {
+                    let bombs = 0;
+                    for (const neighbor of findNeighbors()) {
+                        if (neighbor.classList.contains('mined')) bombs += 1;
+                    }
+                    if (bombs === arrButtons[i][j].textContent.toString()) waveAlgorithm(arrButtons, i, j);
+                });
 
+            }
+        }
+    }
+}
+function waveAlgorithm(button, i, j) {
+    const queue = [];
+    queue.push({ x: i, y: j });
+    do {
+        const x = queue[0].x;
+        const y = queue[0].y;
 
-//     if (button.textContent===setFlagsFromString.toString())
-// }
+        const neighbors = [];
+
+        if (y > 0) neighbors.push({ x: x, y: y - 1 });
+        if (y < n - 1) neighbors.push({ x: x, y: y + 1 });
+        if (x > 0) neighbors.push({ x: x - 1, y: y });
+        if (x > 0 && y > 0) neighbors.push({ x: x - 1, y: y - 1 });
+        if (x > 0 && y < n - 1) neighbors.push({ x: x - 1, y: y + 1 });
+        if (x < n - 1) neighbors.push({ x: x + 1, y: y });
+        if (x < n - 1 && y > 0) neighbors.push({ x: x + 1, y: y - 1 });
+        if (x < n - 1 && y < n - 1) neighbors.push({ x: x + 1, y: y + 1 });
+
+        for (const neighbor of neighbors) {//переделать с of
+            if (button[neighbor.x][neighbor.y].textContent === "") {
+                button[neighbor.x][neighbor.y].classList.add("opened");
+                queue.push(neighbor);
+            } else if (button[neighbor.x][neighbor.y].classList.contains("number")) {
+                button[neighbor.x][neighbor.y].classList.add("opened");
+            }
+        }
+        queue.shift();
+    } while (queue.length !== 0);
+}
 
 function findNeighbors(button, x, y) {
     const arr = [];
-    if (y > 0) arr.push({button: button[x][y-1], x:x, y:y-1});
-    if (y < maze.length - 1) arr.push({button: button[x][y+1], x:x, y:y+1});
-    if (x > 0) arr.push({button: button[x-1][y], x:x-1, y:y});
-    if (x > 0 && y > 0) arr.push({button: button[x-1][y-1], x:x-1, y:y-1});
-    if (x > 0 && y < maze.length-1) arr.push({button: button[x-1][y+1], x:x-1, y:y+1});
-    if (x < maze.length-1) arr.push({button: button[x+1][y], x:x+1, y:y});
-    if (x < maze.length-1 && y > 0) arr.push({button: button[x+1][y-1], x:x+1, y:y-1});
-    if (x < maze.length-1 && y < maze.length-1) arr.push({button: button[x+1][y+1], x:x+1, y:y+1});
+    if (y > 0) arr.push({ button: button[x][y - 1], x: x, y: y - 1 });
+    if (y < n - 1) arr.push({ button: button[x][y + 1], x: x, y: y + 1 });
+    if (x > 0) arr.push({ button: button[x - 1][y], x: x - 1, y: y });
+    if (x > 0 && y > 0) arr.push({ button: button[x - 1][y - 1], x: x - 1, y: y - 1 });
+    if (x > 0 && y < n - 1) arr.push({ button: button[x - 1][y + 1], x: x - 1, y: y + 1 });
+    if (x < n - 1) arr.push({ button: button[x + 1][y], x: x + 1, y: y });
+    if (x < n - 1 && y > 0) arr.push({ button: button[x + 1][y - 1], x: x + 1, y: y - 1 });
+    if (x < n - 1 && y < n - 1) arr.push({ button: button[x + 1][y + 1], x: x + 1, y: y + 1 });
     return arr;
 }
 
