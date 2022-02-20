@@ -54,3 +54,6 @@ input {
 .delete-icon {
     cursor: pointer;
 }
+.pencil {
+    height: 75%;
+}

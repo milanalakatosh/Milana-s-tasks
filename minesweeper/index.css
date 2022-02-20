@@ -1,0 +1,63 @@
+/* 1. Просто поле из кнопок 9x9 (да, идентифицируй по x,y)
+2. На поле сразу же появляются рандомно расставленные мины. Они сразу же видны. Остальные кнопки просто пустые.
+3. На поле сразу же появляются цифры. Они сразу же видны пользователю.
+4. Можно кликать. Если кликаешь на пустую клетку - ничего не происходит. Кликаешь на мину - выводится диалог (через функцию alert) "вы проиграли"
+5. Теперь все изначально кнопки - пустые. Когда кликаешь по любой из них - она открывается (появляется либо цифра, либо мина).
+6. Когда кликаешь по кнопке, вокруг которой нет мин - сразу открываются соседние. Так будут сразу открываться большие пустые поля.
+7. Можно расставлять флаги правой кнопкой мыши (когда дойдёшь до этого, расскажу как, хотя можно и нагуглить ) 
+8. При клике правой кнопкой (или обоими) на цифру открываются все кнопки вокруг кроме флагов (если количество флагов вокруг равно цифре на кнопке) */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.head {
+    height: 65px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background-color: #C9C9CA;
+    border:  2px;
+    border-bottom: 0px;
+    border-color: black;
+    border-style: solid;
+}
+.mine-counter, .time-counter {
+    height: 35px;
+    width: 60px;
+}
+.icon-container {
+   
+}
+.icon {
+    height: 50%;
+    font-size: 180%;
+    cursor: pointer;
+}
+.field {
+    border: 2px solid black;
+}
+.button {
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    background-color: #C9C9CA;
+    border: 1px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-size: 0%;  */
+}
+.visible {
+    font-size: 100%;
+    font-size:  30px;
+    font-weight: 900;
+}
+.opened {
+    background-color: #FFFAFA;
+    pointer-events: none;
+}
+.field>* {
+    display:flex;
+}
+.row {
+    
+}
