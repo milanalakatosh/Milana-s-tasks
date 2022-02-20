@@ -1,4 +1,5 @@
 
+
 const field = document.querySelector(".field");
 const iconSmile = document.querySelector(".icon");
 let buttons;
@@ -7,9 +8,8 @@ const arrButtons = [];
 createButtonsOnField();
 putMines();
 putNumber();
-//handleUserClick();
-openButtonsIfCorrectFlags();
-putFlag();
+handleLeftClick();
+handleRightClick();
 
 function createButtonsOnField() {
     for (let i = 0; i < n; i++) {
@@ -34,7 +34,6 @@ function putMines() {
         const random = Math.floor(Math.random() * buttons.length);
         if (!buttons[random].classList.contains("mined")) {
             buttons[random].classList.add("mined");
-            buttons[random].textContent = "💣";
             mineNumber += 1;
         }
     }
@@ -50,49 +49,29 @@ function putNumber() {
                 const arrNeighbors = findNeighbors(arrButtons, i, j);
                 let number = 0;
                 for (let k = 0; k < arrNeighbors.length; k++) {
-                    if (arrNeighbors[k].button.textContent === "💣") number += 1; //я тут запуталас
+                    if (arrNeighbors[k].button.classList.contains("mined")) number += 1; //я тут запуталас
                 }
                 if (number !== 0) {
-                    arrButtons[i][j].textContent = number;
                     arrButtons[i][j].classList.add("number");
+                    arrButtons[i][j].classList.add("nr-"+number.toString());
                 }
             }
         }
     }
 }
-// function handleUserClick() {
-//     for (let i = 0; i < arrButtons.length; ++i) {
-//         const buttonsRow = arrButtons[i];
-//         for (let j = 0; j < buttonsRow.length; ++j) {
-//             // for (let i = 0; i < buttons.length; ++i) {
-//             buttonsRow[j].addEventListener("click", () => {
-//                 buttonsRow[j].classList.add("opened");
-//                 if (buttonsRow[j].classList.contains("mined")) {
-//                     const mines = field.querySelectorAll(".mined");
-//                     for (const mine of mines) mine.classList.add("visible");
-//                     iconSmile.textContent = "😵";
-//                     for (let k = 0; k < buttons.length; ++k) {
-//                         //buttons[i].disabled=true;
-//                         buttons[k].style.pointerEvents = 'none';
-//                     }
-//                 }
-//                 if (!buttonsRow[j].classList.contains("mined") && buttonsRow[j].textContent !== "") {
-//                     buttonsRow[j].classList.add("opened");
-//                 }
-//                 if (buttonsRow[j].textContent === "") {
-//                     if (j > 0) checkNeighborButton(arrButtons[i], j - 1, "-");
-//                     if (j < n - 1) checkNeighborButton(arrButtons[i], j + 1, "+");
-//                     if (i > 0 && j > 0) checkNeighborButton(arrButtons[i - 1], j - 1, "-");
-//                     if (i > 0 && j < n - 1) checkNeighborButton(arrButtons[i - 1], j + 1, "+");
-//                     if (i < n - 1 && j > 0) checkNeighborButton(arrButtons[i + 1], j - 1, "-");
-//                     if (i < n - 1 && j < n - 1) checkNeighborButton(arrButtons[i + 1], j + 1, "+");
-//                     if (i > 0) checkNeighborButton(arrButtons[i + 1], j, "", "+");
-//                     if (i < n - 1) checkNeighborButton(arrButtons[i + 1], j, "", "-");
-//                 }
-//             });
-//         }
-//     }
-// };
+function handleLeftClick() {
+    for (let i = 0; i < arrButtons.length; ++i) {
+        const buttonsRow = arrButtons[i];
+        for (let j = 0; j < buttonsRow.length; ++j) {
+            buttonsRow[j].addEventListener("click", () => {
+                if (!buttonsRow[j].classList.contains("flag")) buttonsRow[j].classList.add("opened");
+                if (buttonsRow[j].classList.contains("mined")) lostGame();
+                if (buttonsRow[j].textContent === "") waveAlgorithm(arrButtons, i, j);
+                if (buttonsRow[j].classList.contains("number") && !buttonsRow[j].classList.contains("flag")) openButtonsIfCorrectFlags(arrButtons, i, j);
+            });
+        }
+    }
+}
 
 // function checkNeighborButton(arr[i], index, operatorColumn, operatorRow) {
 //     if (index > 0 && arr[i][index].textContent === "") {
@@ -106,42 +85,54 @@ function putNumber() {
 //     }
 // }
 
-function putFlag() {//handleRightClick
+function handleRightClick() {
     for (const button of buttons) {
         button.addEventListener("contextmenu", () => {
-            if (button.textContent !== "🚩" && button.textContent === "") {
-                button.addEventListener('click', function () {
-                    return false;
-                });
-                button.textContent = "🚩";
-            } else if (button.textContent === "🚩") {
-                button.addEventListener('click', function () {
-                    return true;
-                });
-                button.textContent = "";
-            } else {
-                openButtonsIfCorrectFlags();
-            }
-
+            if (!button.classList.contains("flag") && button.textContent === "" || button.classList.contains("number"))
+                putFlag(button);
+            else if (button.classList.contains("flag")) removeFlag(button);
         });
     }
 }
-function openButtonsIfCorrectFlags() {
-    for (let i = 0; i < arrButtons.length; ++i) {
-        for (let j = 0; j < arrButtons[i].length; ++j) {
-            if (arrButtons[i][j].classList.contains("number")) {
-                arrButtons[i][j].addEventListener("click", () => {
-                    let bombs = 0;
-                    for (const neighbor of findNeighbors()) {
-                        if (neighbor.classList.contains('mined')) bombs += 1;
-                    }
-                    if (bombs === arrButtons[i][j].textContent.toString()) waveAlgorithm(arrButtons, i, j);
-                });
 
-            }
+function putFlag(button) {
+    button.addEventListener('click', () => false);
+    button.classList.add("flag");
+}
+
+function removeFlag(button) {
+    button.addEventListener('click', () => true);
+    button.classList.remove("flag");
+}
+
+function openButtonsIfCorrectFlags(button, x, y) {
+    // for (let i = 0; i < arrButtons.length; ++i) {
+    //     for (let j = 0; j < arrButtons[i].length; ++j) {
+    //         if (arrButtons[i][j].classList.contains("number")) {
+    //             arrButtons[i][j].addEventListener("click", () => {
+    let bombs = 0;
+    const arrBombs = [];
+    let arrFlags = 0;
+    for (const neighbor of findNeighbors(button, x, y)) {
+        if (neighbor.button.classList.contains('mined')) {
+            bombs += 1;
+            arrBombs.push(neighbor.button);
+        }
+        if (neighbor.button.classList.contains('flag')) {
+            arrFlags+=1;
         }
     }
+    if (bombs!==arrFlags) {
+        return false;
+    } else {
+        for (const bomb of arrBombs) {
+            if (!bomb.classList.contains("flag")) return lostGame();
+        }
+    }
+    return openNeighborButtons(button, x, y);
 }
+
+
 function waveAlgorithm(button, i, j) {
     const queue = [];
     queue.push({ x: i, y: j });
@@ -185,3 +176,21 @@ function findNeighbors(button, x, y) {
     return arr;
 }
 
+function openNeighborButtons(button, x, y) {
+    const arrNeighbors = findNeighbors(button, x, y);
+    for (const n of arrNeighbors) {
+        if (!n.button.classList.contains("mined")) {
+            n.button.classList.add("opened");
+            n.button.classList.add("visible");
+        }
+    }
+}
+
+function lostGame() {
+    const mines = field.querySelectorAll(".mined");
+    for (const mine of mines) mine.classList.add("visible");
+    iconSmile.textContent = "😵";
+    for (let k = 0; k < buttons.length; ++k) {
+        buttons[k].style.pointerEvents = 'none';
+    }
+}

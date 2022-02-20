@@ -10,16 +10,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(background.png);
 }
 .head {
     height: 65px;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    background-color: #C9C9CA;
+    background-color: #7B7895;
     border:  2px;
     border-bottom: 0px;
-    border-color: black;
+    border-color: #2A1C53;
     border-style: solid;
 }
 .mine-counter, .time-counter {
@@ -35,29 +36,76 @@ body {
     cursor: pointer;
 }
 .field {
-    border: 2px solid black;
+    border: 2px solid #2A1C53;
 }
 .button {
     cursor: pointer;
     width: 34px;
     height: 34px;
-    background-color: #C9C9CA;
+    background-color: #C7C4D9;
     border: 1px solid gray;
     font-family: Arial, Helvetica, sans-serif;
     /* font-size: 0%;  */
 }
+.mined {
+    /*display: none;*/
+}
+.flag {
+    
+}
+.mined::before {
+    content: '💣';
+}
+.flag::before {
+    content: ' 🚩';
+}
 .visible {
-    font-size: 100%;
-    font-size:  30px;
-    font-weight: 900;
+    display: inline-block;
 }
 .opened {
-    background-color: #FFFAFA;
+    background-color: #F8EDEA;
+    pointer-events: none;
+}
+.blocked {
     pointer-events: none;
 }
 .field>* {
     display:flex;
 }
-.row {
-    
+.number {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: 900;
+    font-size: 20px;
+}
+.number.nr-1 {
+    color: blue;
+    content: "1";
+}
+.number.nr-2 {
+    color: green;
+    content: "2";
+}
+.number.nr-3 {
+    color: red;
+    content: "3";
+}
+.number.nr-4 {
+    color: #000A7B;
+    content: "4";
+}
+.number.nr-5 {
+    color: #75140C;
+    content: "5";
+}
+.number.nr-6 {
+    color: #36837D;
+    content: "6";
+}
+.number.nr-7 {
+    color: #030303;
+    content: "7";
+}
+.number.nr-8 {
+    color:hotpink;
+    content: "8";
 }
