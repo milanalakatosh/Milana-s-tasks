@@ -1,0 +1,44 @@
+/* приоритеты
+// *                0
+// tag (div)        1
+// [attr="value"]   10
+// .class           100
+// #id              1000
+// style            10000
+// !important       100000 */
+
+.class-name-3.class-name-4#id-name {
+    color: yellow;
+}
+
+.class-name-3.class-name-4 {
+    color: white;
+}
+
+.class-name {
+    color: darkblue;
+}
+
+#id-name {
+    color: green;
+}
+
+.class-name-2 {
+    color: tomato;
+}
+
+div {
+    color: beige;
+}
+
+body #id-name {
+    color: hotpink;
+}
+
+[data-tag="div"] {
+    color: aqua !important;
+}
+
+* {
+    color: azure;
+}
