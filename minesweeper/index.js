@@ -8,6 +8,7 @@ const arrButtons = [];
 createButtonsOnField();
 putMines();
 putNumber();
+findEmpty();
 handleLeftClick();
 handleRightClick();
 
@@ -25,6 +26,9 @@ function createButtonsOnField() {
         arrButtons.push(buttonsRow);
     }
     buttons = field.querySelectorAll(".button");
+    buttons.forEach(button =>
+        button.addEventListener('contextmenu', button => button.preventDefault())
+    );
     // buttons[3][5]
 }
 
@@ -53,12 +57,19 @@ function putNumber() {
                 }
                 if (number !== 0) {
                     arrButtons[i][j].classList.add("number");
-                    arrButtons[i][j].classList.add("nr-"+number.toString());
+                    arrButtons[i][j].classList.add("nr-" + number.toString());
                 }
             }
         }
     }
 }
+
+function findEmpty() {
+    for (const button of buttons) {
+        if (!button.classList.contains("number") && !button.classList.contains("mined")) button.classList.add("empty");
+    }
+}
+
 function handleLeftClick() {
     for (let i = 0; i < arrButtons.length; ++i) {
         const buttonsRow = arrButtons[i];
@@ -66,7 +77,7 @@ function handleLeftClick() {
             buttonsRow[j].addEventListener("click", () => {
                 if (!buttonsRow[j].classList.contains("flag")) buttonsRow[j].classList.add("opened");
                 if (buttonsRow[j].classList.contains("mined")) lostGame();
-                if (buttonsRow[j].textContent === "") waveAlgorithm(arrButtons, i, j);
+                if (buttonsRow[j].classList.contains("empty")) waveAlgorithm(arrButtons, i, j);
                 if (buttonsRow[j].classList.contains("number") && !buttonsRow[j].classList.contains("flag")) openButtonsIfCorrectFlags(arrButtons, i, j);
             });
         }
@@ -88,20 +99,19 @@ function handleLeftClick() {
 function handleRightClick() {
     for (const button of buttons) {
         button.addEventListener("contextmenu", () => {
-            if (!button.classList.contains("flag") && button.textContent === "" || button.classList.contains("number"))
-                putFlag(button);
+            if (!button.classList.contains("flag")) putFlag(button);//добавить условие opened
             else if (button.classList.contains("flag")) removeFlag(button);
         });
     }
 }
 
 function putFlag(button) {
-    button.addEventListener('click', () => false);
+    //button.addEventListener('click', () => false);//исправить
     button.classList.add("flag");
 }
 
 function removeFlag(button) {
-    button.addEventListener('click', () => true);
+    //button.addEventListener('click', () => true);
     button.classList.remove("flag");
 }
 
@@ -119,10 +129,10 @@ function openButtonsIfCorrectFlags(button, x, y) {
             arrBombs.push(neighbor.button);
         }
         if (neighbor.button.classList.contains('flag')) {
-            arrFlags+=1;
+            arrFlags += 1;
         }
     }
-    if (bombs!==arrFlags) {
+    if (bombs !== arrFlags) {
         return false;
     } else {
         for (const bomb of arrBombs) {
@@ -151,10 +161,12 @@ function waveAlgorithm(button, i, j) {
         if (x < n - 1 && y > 0) neighbors.push({ x: x + 1, y: y - 1 });
         if (x < n - 1 && y < n - 1) neighbors.push({ x: x + 1, y: y + 1 });
 
-        for (const neighbor of neighbors) {//переделать с of
-            if (button[neighbor.x][neighbor.y].textContent === "") {
-                button[neighbor.x][neighbor.y].classList.add("opened");
-                queue.push(neighbor);
+        for (const neighbor of neighbors) {
+            if (button[neighbor.x][neighbor.y].classList.contains("empty")) {
+                if (!button[neighbor.x][neighbor.y].classList.contains("opened")) {
+                    button[neighbor.x][neighbor.y].classList.add("opened");
+                    queue.push(neighbor);
+                }
             } else if (button[neighbor.x][neighbor.y].classList.contains("number")) {
                 button[neighbor.x][neighbor.y].classList.add("opened");
             }
